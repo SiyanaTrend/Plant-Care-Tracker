@@ -27,6 +27,7 @@ class Plant(models.Model):
             MinLengthValidator(5, 'The plant name must be at least 5 chars long!'),
             PlantNameValidator(),
         ],
+        help_text='*Allowed plant names can contain letters, digits, spaces and hyphens.'
     )
     species = models.CharField(
         max_length=50,
@@ -42,14 +43,14 @@ class Plant(models.Model):
     )
     city = models.CharField(
         max_length=50,
-        help_text='The city where the plant is located.'
+        help_text='*The city where the plant is located.'
     )
 
     address = models.CharField(
         max_length=100,
         blank=True,
         null=True,
-        help_text='Optional: Apartment, floor, or specific spot (e.g., "Balcony").'
+        help_text='*Optional: apartment, floor, or specific spot (e.g., "Balcony").'
     )
 
     created_at = models.DateTimeField(
