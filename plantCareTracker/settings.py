@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gardeners.apps.GardenersConfig',
+    'plants.apps.PlantsConfig',
+    'maintenance.apps.MaintenanceConfig',
+    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
