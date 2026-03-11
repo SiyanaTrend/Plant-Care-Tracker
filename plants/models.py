@@ -1,4 +1,4 @@
-from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, ValidationError
 from django.db import models
 
 from plants.validators import PlantNameValidator
@@ -8,10 +8,20 @@ class Tag(models.Model):
     tag_name = models.CharField(
         max_length=60,
         unique=True,
-        error_messages={
-            'unique': 'That tag is already registered!'
-        },
     )
+
+    def _normalize_name(self):
+        return self.tag_name.strip().title()
+
+    def clean(self):
+        normalized = self._normalize_name()
+
+        if Tag.objects.filter(tag_name__iexact=normalized).exclude(pk=self.pk).exists():
+            raise ValidationError({'tag_name': 'That tag is already registered!'})
+
+    def save(self, *args, **kwargs):
+        self.tag_name = self._normalize_name()
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['tag_name']
