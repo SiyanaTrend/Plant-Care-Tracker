@@ -4,7 +4,7 @@ from django.utils.deconstruct import deconstructible
 
 @deconstructible
 class LettersDigitsOnlyValidator:
-    def __init__(self, message: str = 'A nickname must contain only letters and digits!'):
+    def __init__(self, message: str = 'The nickname must contain only letters and digits!'):
         self.message = message
 
     def __call__(self, value: str, *args, **kwargs):
@@ -14,7 +14,7 @@ class LettersDigitsOnlyValidator:
 
 @deconstructible
 class FirstAndLastNameValidator:
-    def __init__(self, message: str = 'Name must start with a capital letter and contain only letters and hyphens!'):
+    def __init__(self, message: str = 'The name must start with a capital letter and contain only letters and hyphens!'):
         self.message = message
 
     def __call__(self, value: str, *args, **kwargs):
