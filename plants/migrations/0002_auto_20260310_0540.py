@@ -7,7 +7,7 @@ INITIAL_TAGS = [
     'Indoor', 'Outdoor', 'Tropical', 'Succulent', 'Cactus',
     'Pet Friendly', 'Low Light', 'Bright Light', 'Air Purifying',
     'High Humidity', 'Medicinal', 'Edible', 'Fragrant',
-    'Beginner Friendly', 'Hard to Kill', 'Flowering', 'Trailing',
+    'Beginner Friendly', 'Hard To Kill', 'Flowering', 'Trailing',
 ]
 
 
@@ -15,12 +15,17 @@ def create_initial_tags(apps, schema_editor):
     tag_model = apps.get_model('plants', 'Tag')
 
     for name in INITIAL_TAGS:
-        tag_model.objects.get_or_create(tag_name=name)
+        exists = tag_model.objects.filter(tag_name__iexact=name).exists()
+
+        if not exists:
+            tag_model.objects.create(tag_name=name)
 
 
 def remove_initial_tags(apps, schema_editor):
     tag_model = apps.get_model('plants', 'Tag')
-    tag_model.objects.filter(tag_name__in=INITIAL_TAGS).delete()
+
+    for name in INITIAL_TAGS:
+        tag_model.objects.filter(tag_name__iexact=name).delete()
 
 
 class Migration(migrations.Migration):
