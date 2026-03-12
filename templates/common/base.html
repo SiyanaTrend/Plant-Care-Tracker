@@ -1,0 +1,53 @@
+{% load get_user %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Plant Care Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+<header class="section site-header">
+    <div class="inner">
+        <div class="site-branding">
+            <div class="site-logo">
+                <img src="{% static 'images/logo.png' %}" alt="plant-logo"/>
+            </div>
+            <div class="site-description">
+                <a href="{% url 'home' %}">Plant Care Tracker</a>
+            </div>
+            {% get_user as profile %}
+            {% if profile %}
+                <nav>
+                    <ul>
+                        <li><a href="#">My Plants</a></li>
+                        <li><a href="#">Add New Plant</a></li>
+                        <li><a href="#">Statistics</a></li>
+                        <li><a href="#">{{ profile.nickname }}'s Profile</a></li>
+                    </ul>
+                </nav>
+            {% else %}
+                <nav>
+                    <a href="#">Create Profile</a>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="inner">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 • Plant Care Tracker • Built for plant lovers </p>
+</footer>
+
+</body>
+</html>
