@@ -29,3 +29,7 @@ class GardenerCreateForm(GardenerBaseForm):
     class Meta(GardenerBaseForm.Meta):
         exclude = ['about_me']
         pass
+
+
+class GardenerEditForm(GardenerBaseForm):
+    pass
