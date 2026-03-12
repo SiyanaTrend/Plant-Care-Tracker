@@ -1,0 +1,59 @@
+.section.site-header {
+    margin-top: 2em;
+}
+
+.section.site-header .inner {
+    display: flex;
+    align-items: center;
+}
+
+.section.site-header .site-branding {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.section.site-header .site-logo {
+    flex: 0 0 4%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--flower-accent);
+}
+
+.section.site-header .site-logo > img {
+    aspect-ratio: 1/1;
+}
+
+.section.site-header .site-description a {
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 2;
+    text-decoration: none;
+    color: var(--green);
+}
+
+
+.section.site-header nav {
+    margin-left: auto;
+}
+
+.section.site-header nav ul {
+    display: flex;
+    gap: 1em;
+}
+
+.section.site-header nav a,
+.section.site-header nav li {
+    text-decoration: none;
+    list-style: none;
+    color: var(--green);
+    font-weight: 700;
+    font-style: italic;
+}
+
+.section.site-header nav a:hover,
+.section.site-header .site-description a:hover {
+    color: var(--dark-green);
+}
