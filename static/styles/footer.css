@@ -1,9 +1,6 @@
 footer {
     margin-top: auto;
-    color: var(--dark-green);
     background-color: var(--footer-background);
-    font-style: oblique;
-    font-weight: bold;
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -15,3 +12,8 @@ footer {
     border-top-right-radius: 90px;
 }
 
+footer p {
+    font-style: oblique;
+    font-weight: bold;
+    color: var(--dark-green);
+}
