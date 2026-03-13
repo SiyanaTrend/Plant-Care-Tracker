@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from common.mixins import SingleProfileMixin
 from gardeners.forms import GardenerCreateForm, GardenerEditForm
@@ -25,4 +25,10 @@ class GardenerEditView(SingleProfileMixin, UpdateView):
     model = Gardener
     form_class = GardenerEditForm
     template_name = 'gardeners/edit-gardener.html'
+    success_url = reverse_lazy('gardener-details')
+
+
+class GardenerDeleteView(SingleProfileMixin, DeleteView):
+    model = Gardener
+    template_name = 'gardeners/delete-gardener.html'
     success_url = reverse_lazy('home')
