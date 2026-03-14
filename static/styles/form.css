@@ -1,0 +1,174 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+}
+
+.card {
+    max-width: 500px;
+    margin: 1em 0 3em 0;
+    padding: 1.8em;
+    background: var(--form-background);
+    text-align: center;
+    border-radius: 20px;
+    border-top: 5px solid var(--dark-purple);
+    box-shadow: 0 4px 24px var(--flower-accent);
+}
+
+form h4 {
+    margin-bottom: 2em;
+    color: var(--green);
+}
+
+label {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+    display: block;
+    color: var(--green);
+    font-weight: bold;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 2px solid var(--flower-accent);
+    padding: 0.5em;
+    font-size: 0.9em;
+    color: var(--text-input);
+}
+
+form button {
+    text-transform: uppercase;
+    background: var(--flower-accent);
+    width: 100%;
+    border: 0;
+    padding: 0.3em;
+    margin-top: 1em;
+    color: var(--green);
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    display: block;
+    width: 100%;
+    text-align: center;
+    transform: scale(1.05) translateY(-2px);
+    font-weight: bold;
+    background: var(--dark-purple);
+    color: white;
+    box-shadow: 0 5px 15px rgb(2, 80, 59);
+}
+
+.helptext {
+    color: var(--text-muted);
+    font-size: 0.8em;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--placeholder-text-color);
+    opacity: 0.5;
+    font-weight: normal;
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+
+.errorlist {
+    font-size: 0.8em;
+    color: var(--error-text);
+}
+
+.card.delete-card {
+    max-width: 550px;
+    border-top: 5px solid var(--delete-btn);
+}
+
+.warning-icon .icon {
+    display: inline-block;
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    filter: drop-shadow(0 0 5px var(--flower-accent));
+    animation: shake 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+.delete-card h3 {
+    color: var(--dark-green);
+    margin-bottom: 0.7em;
+}
+
+.card.delete-card p {
+    color: var(--dark-green);
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+}
+
+.delete-actions {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-card .delete-actions .btn {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8em 1em;
+    height: 3.5em;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    line-height: normal;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.delete-card .delete-actions .btn:hover {
+    width: auto;
+    transform: scale(1.05) translateY(-2px);
+}
+
+.delete-card .delete-actions .btn-secondary {
+    background: var(--flower-accent) !important;
+    color: var(--dark-green) !important;
+}
+
+.delete-card .delete-actions .btn-secondary:hover {
+    background: var(--dark-purple) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgb(213, 160, 213) !important;
+}
+
+.delete-card .delete-actions .btn-delete {
+    background: var(--delete-btn) !important;
+    color: white !important;
+}
+
+.delete-card .delete-actions .btn-delete:hover {
+    background: var(--delete-btn-hover) !important;
+    box-shadow: 0 5px 15px rgba(230, 141, 163, 0.4) !important;
+}

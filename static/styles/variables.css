@@ -1,0 +1,21 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+:root {
+    --form-shadow-green: #228e72;
+    --green: #1e6753;
+    --dark-green: #114737;
+    --flower-accent: #e6cfe2;
+    --footer-background: #f7f8fa;
+    --form-background: #fbf9f9;
+    --purple-background: #d6a7ca;
+    --dark-purple: #9a2664;
+    --delete-btn: #ca3e65;
+    --delete-btn-hover: #cc0000;
+    --error-text: #d62828;
+    --text-muted: #8c9f84;
+    --text-input: #495544;
+    --light-border: 1px solid #dddddd;
+    --placeholder-text-color: #aaaaaa;
+}
