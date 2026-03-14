@@ -22,6 +22,10 @@ class PlantBaseForm(forms.ModelForm):
             'tags': 'Tags:',
         }
 
+        help_texts = {
+            'tags': '*Hold Ctrl (or Cmd) to select more than one.',
+        }
+
         widgets = {
             'plant_name': forms.TextInput(attrs={'placeholder': 'example: Monstera Deliciosa'}),
             'species': forms.TextInput(attrs={'placeholder': 'example: Monstera'}),
@@ -29,13 +33,14 @@ class PlantBaseForm(forms.ModelForm):
             'image_url': forms.URLInput(attrs={'placeholder': 'https://...'}),
             'city': forms.TextInput(attrs={'placeholder': 'example: Sofia'}),
             'address': forms.TextInput(attrs={'placeholder': 'example: Living room, shelf 2'}),
-            'tags': forms.SelectMultiple(attrs={'class': 'tags-select'}),
+            'tags': forms.SelectMultiple(attrs={'class': 'tags-select'})
         }
 
 
 class PlantCreateForm(HiddenHelpText, PlantBaseForm):
     class Meta(PlantBaseForm.Meta):
-        exclude = ['gardener', 'species', 'image_url', 'watering_frequency', 'fertilizing_frequency', 'pruning_frequency']
+        exclude = ['gardener', 'species', 'image_url', 'watering_frequency', 'fertilizing_frequency',
+                   'pruning_frequency', 'tags']
         pass
 
 
@@ -47,4 +52,5 @@ class PlantDeleteForm(ReadOnlyMixin, HiddenHelpText, PlantBaseForm):
     read_only_fields = ['plant_name', 'city', 'address']
 
     class Meta(PlantBaseForm.Meta):
-        exclude = ['gardener', 'species', 'description', 'image_url', 'watering_frequency', 'fertilizing_frequency', 'pruning_frequency', 'tags']
+        exclude = ['gardener', 'species', 'description', 'image_url', 'watering_frequency', 'fertilizing_frequency',
+                   'pruning_frequency', 'tags']
