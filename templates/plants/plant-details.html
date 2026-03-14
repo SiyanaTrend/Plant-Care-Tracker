@@ -9,7 +9,7 @@
             <div class='profile-layout'>
 
                 <div class='profile-left'>
-                    {% static 'images/plant-image.png' as default_plant %}
+                    {% static 'images/plant-avatar.jpg' as default_plant %}
                     <div class='avatar-wrapper'>
                         <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
                     </div>

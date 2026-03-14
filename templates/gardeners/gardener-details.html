@@ -9,7 +9,7 @@
             <div class='profile-layout'>
 
                 <div class='profile-left'>
-                    {% static 'images/no-profile-img.png' as default_avatar %}
+                    {% static 'images/gardener-avatar.jpg' as default_avatar %}
                     <div class='avatar-wrapper'>
                         <img src='{{ gardener.profile_picture|default:default_avatar }}' alt='avatar' class='avatar'>
                         {% if gardener.is_pro %}
