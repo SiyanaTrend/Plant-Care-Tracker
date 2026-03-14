@@ -3,10 +3,14 @@
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
-    <form method="post" action="">
-        <h3>Edit Your Profile</h3>
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Edit</button>
-    </form>
+    <div class='container'>
+        <div class='card'>
+            <form method='post' action=''>
+                <h4>Edit Your Profile</h4>
+                {% csrf_token %}
+                {{ form }}
+                <button type='submit'>Edit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -3,10 +3,14 @@
 {% block title %}Create Profile{% endblock %}
 
 {% block content %}
-    <form method="post" action="">
-        <h3>New Gardener's Profile</h3>
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Create Profile</button>
-    </form>
+    <div class='container'>
+        <div class='card'>
+            <form method='post' action=''>
+                <h4>New Gardener's Profile</h4>
+                {% csrf_token %}
+                {{ form }}
+                <button type='submit'>Create Profile</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
