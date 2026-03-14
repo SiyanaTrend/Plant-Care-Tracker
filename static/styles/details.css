@@ -87,6 +87,40 @@
     transform: translateX(3px);
 }
 
+.care-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    margin: 1em 0;
+    padding: 0.8em;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+    border-left: 5px solid var(--flower-accent);
+    border-right: 5px solid var(--flower-accent);
+}
+
+.care-item {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.care-icon {
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.care-item p {
+    margin-bottom: 0.2em;
+    font-size: 0.9em;
+    color: var(--dark-green);
+}
+
+.care-item span {
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
 .about-container {
     margin: 0.5em 0;
     padding: 0.8em;
@@ -186,7 +220,7 @@
     padding: 2px 8px;
     border-radius: 10px;
     font-size: 0.8em;
-    margin-right: 5px;
+    margin-right: 0.2em;
     display: inline-block;
 }
 
@@ -236,4 +270,28 @@
 
 .delete-actions.vertical-buttons {
     margin-top: 1.5em;
+}
+
+.tags-select {
+    width: 100%;
+    height: 120px !important;
+    border: 2px solid var(--flower-accent) !important;
+    border-radius: 35px !important;
+    padding: 10px !important;
+    text-align: center;
+    background-color: white;
+    color: var(--text-input);
+    cursor: pointer;
+}
+
+.tags-select option {
+    padding: 0.3em;
+    border-radius: 25px;
+    margin-bottom: 0.2em;
+}
+
+.tags-select option:checked {
+    background: var(--green) linear-gradient(0deg, var(--green) 0%, var(--green) 100%) !important;
+    color: white !important;
+    border: none;
 }
