@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Plant Care Tracker{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
 <header class="section site-header">
@@ -23,7 +24,7 @@
             {% if profile %}
                 <nav>
                     <ul>
-                        <li><a href="{% url 'catalogue' %}">Plants' Catalogue</a></li>
+                        <li><a href="{% url 'catalogue' %}">My Catalogue</a></li>
                         <li><a href="{% url 'create-plant' %}">New Plant</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li><a href="{% url 'gardener-details' %}">{{ profile.nickname }}'s Profile</a></li>

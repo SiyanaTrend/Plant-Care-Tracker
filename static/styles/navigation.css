@@ -34,7 +34,6 @@
     color: var(--green);
 }
 
-
 .section.site-header nav {
     margin-left: auto;
 }
@@ -49,8 +48,9 @@
     text-decoration: none;
     list-style: none;
     color: var(--green);
-    font-weight: 700;
-    font-size: 1.1em;
+    font-weight: 600;
+    font-size: 1.12em;
+    letter-spacing: -1.5px;
 }
 
 .section.site-header nav a:hover,

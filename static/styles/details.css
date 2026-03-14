@@ -75,7 +75,7 @@
     text-decoration: none;
     padding: 2px 8px;
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     margin-left: 5px;
 }
 
