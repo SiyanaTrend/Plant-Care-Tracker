@@ -25,15 +25,32 @@
                         <p><strong>Added on:</strong> {{ plant.created_at|date:"d M Y" }}</p>
                         <p><strong>Tags:</strong>
                             {% for tag in plant.tags.all %}
-                                <span class='tag-badge'>#{{ tag.tag_name }}</span>
+                                <span class='tag-badge'>🍃 {{ tag.tag_name }}</span>
                             {% endfor %}
                         </p>
+                    </div>
+                    <div class='care-info-grid'>
+                        <div class='care-item'>
+                            <span class='care-icon'>💧</span>
+                            <p><strong>Watering</strong></p>
+                            <span>{{ plant.watering_frequency }} times / month</span>
+                        </div>
+                        <div class='care-item'>
+                            <span class='care-icon'>🧪</span>
+                            <p><strong>Fertilizing</strong></p>
+                            <span>{{ plant.fertilizing_frequency }} times / year</span>
+                        </div>
+                        <div class='care-item'>
+                            <span class='care-icon'>✂️</span>
+                            <p><strong>Pruning</strong></p>
+                            <span>{{ plant.pruning_frequency }} times / year</span>
+                        </div>
                     </div>
                     <p><strong>Description:</strong></p>
                     <div class='about-container'>
                         <input type='checkbox' id='read-more-checker' class='hidden-checker'>
                         <p class='about-text short-text'>
-                            {{ gardener.about_me|truncatechars:100 }}
+                            {{ plant.description|truncatechars:100 }}
                             {% if plant.description|length > 100 %}
                                 <label for='read-more-checker' class='read-toggle'>(show more)</label>
                             {% endif %}
