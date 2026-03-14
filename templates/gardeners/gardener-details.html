@@ -1,0 +1,65 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}{{ gardener.nickname }}'s Profile Details{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card profile-card'>
+            <div class='profile-layout'>
+
+                <div class='profile-left'>
+                    {% static 'images/no-profile-img.png' as default_avatar %}
+                    <div class='avatar-wrapper'>
+                        <img src='{{ gardener.profile_picture|default:default_avatar }}' alt='avatar' class='avatar'>
+                        {% if gardener.is_pro %}
+                            <span class='pro-clover'>🍀</span>
+                        {% endif %}
+                    </div>
+                    {% if gardener.is_pro %}
+                        <p class='pro-label'>PRO GARDENER</p>
+                    {% endif %}
+                </div>
+
+                <div class='profile-right'>
+                    <h4>{{ gardener.full_name|upper }}</h4>
+                    <p class='nickname'>@{{ gardener.nickname }}</p>
+
+                    <div class='info-details'>
+                        <p><strong>Email:</strong> {{ gardener.email }}</p>
+                        <p>
+                            <strong>Plants in collection:</strong>
+                            {% if gardener.plants.count %}
+                                {{ gardener.plants.count }}
+                            {% else %}
+                                <a href='{% url "home" %}' class='add-link'>Add plant</a>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    {% if gardener.about_me %}
+                        <p><strong>Interesting information about me:</strong></p>
+                        <div class='about-container'>
+                            <input type='checkbox' id='read-more-checker' class='hidden-checker'>
+                            <p class='about-text short-text'>
+                                {{ gardener.about_me|truncatechars:100 }}
+                                {% if gardener.about_me|length > 100 %}
+                                    <label for='read-more-checker' class='read-toggle'>(show more)</label>
+                                {% endif %}
+                            </p>
+                            <p class='about-text full-text'>
+                                {{ gardener.about_me }}
+                                <label for='read-more-checker' class='read-toggle'>(show less)</label>
+                            </p>
+                        </div>
+                    {% endif %}
+
+                    <div class='details-actions-wrapper'>
+                        <a href='{% url "edit-gardener" %}' class='btn btn-secondary'>Edit Profile</a>
+                        <a href='{% url "delete-gardener" %}' class='btn btn-delete'>Delete Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

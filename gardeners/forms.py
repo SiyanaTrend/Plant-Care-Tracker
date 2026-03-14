@@ -27,7 +27,7 @@ class GardenerBaseForm(forms.ModelForm):
 
 class GardenerCreateForm(GardenerBaseForm):
     class Meta(GardenerBaseForm.Meta):
-        exclude = ['about_me']
+        exclude = ['about_me', 'profile_picture', 'is_pro']
         pass
 
 
