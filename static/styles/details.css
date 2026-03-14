@@ -31,7 +31,7 @@
 .avatar {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 20px;
     object-fit: cover;
     border: 4px solid var(--flower-accent);
 }
@@ -49,7 +49,7 @@
 .pro-label {
     margin-top: 1.4em;
     font-weight: 600;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 0.4em;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
@@ -178,4 +178,62 @@
 .details-actions-wrapper .btn.btn-delete:hover {
     background: var(--delete-btn-hover) !important;
     box-shadow: 0 5px 15px rgba(230, 141, 163, 0.4) !important;
+}
+
+.tag-badge {
+    background: var(--flower-accent);
+    color: var(--dark-green);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.tags-select {
+    height: 100px !important;
+    border-radius: 15px !important;
+    padding: 10px !important;
+}
+
+.profile-right .about-text {
+    font-style: normal;
+    color: var(--text-input);
+}
+
+.readonly-fields-container {
+    margin-bottom: 2em;
+    text-align: left;
+    flex: 0 0 66%;
+}
+
+.readonly-fields-container input {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    border-bottom: 1px solid var(--text-muted);
+}
+
+.readonly-fields-container input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--text-muted);
+}
+
+.delete-card .helptext {
+    display: none;
+}
+
+.delete-actions.vertical-buttons {
+    flex: 0 0 30%;
+    flex-direction: column;
+    gap: 0.8em;
+    width: 100%;
+}
+
+.delete-actions.vertical-buttons .btn {
+    width: 100% !important;
+    margin: 0;
+}
+
+.delete-actions.vertical-buttons {
+    margin-top: 1.5em;
 }

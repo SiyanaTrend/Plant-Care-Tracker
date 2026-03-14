@@ -33,7 +33,7 @@ class PlantBaseForm(forms.ModelForm):
         }
 
 
-class PlantCreateForm(HelpTextHidden, PlantBaseForm):
+class PlantCreateForm(HiddenHelpText, PlantBaseForm):
     class Meta(PlantBaseForm.Meta):
         exclude = ['gardener', 'species', 'image_url', 'watering_frequency', 'fertilizing_frequency', 'pruning_frequency']
         pass

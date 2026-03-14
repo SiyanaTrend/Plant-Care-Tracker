@@ -63,7 +63,7 @@ form button:hover {
     font-weight: bold;
     background: var(--dark-purple);
     color: white;
-    box-shadow: 0 5px 15px rgb(2, 80, 59);
+    box-shadow: 0 5px 15px rgb(213, 160, 213);
 }
 
 .helptext {
