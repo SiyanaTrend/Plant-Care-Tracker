@@ -23,8 +23,8 @@
             {% if profile %}
                 <nav>
                     <ul>
-                        <li><a href="{% url 'catalogue' %}">My Plants</a></li>
-                        <li><a href="#">Add New Plant</a></li>
+                        <li><a href="{% url 'catalogue' %}">Plants' Catalogue</a></li>
+                        <li><a href="{% url 'create-plant' %}">New Plant</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li><a href="{% url 'gardener-details' %}">{{ profile.nickname }}'s Profile</a></li>
                     </ul>
