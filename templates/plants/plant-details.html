@@ -1,0 +1,56 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}{{ plant.plant_name }}'s Details{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card profile-card'>
+            <div class='profile-layout'>
+
+                <div class='profile-left'>
+                    {% static 'images/plant-image.png' as default_plant %}
+                    <div class='avatar-wrapper'>
+                        <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
+                    </div>
+                    {% if plant.species %}
+                        <p class='pro-label'>{{ plant.species|upper }}</p>
+                    {% endif %}
+                </div>
+
+                <div class='profile-right'>
+                    <h4>{{ plant.plant_name }}</h4>
+                    <div class='info-details'>
+                        <p><strong>Location:</strong> {{ plant.city }}, {{ plant.address }}</p>
+                        <p><strong>Added on:</strong> {{ plant.created_at|date:"d M Y" }}</p>
+                        <p><strong>Tags:</strong>
+                            {% for tag in plant.tags.all %}
+                                <span class='tag-badge'>#{{ tag.tag_name }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <p><strong>Description:</strong></p>
+                    <div class='about-container'>
+                        <input type='checkbox' id='read-more-checker' class='hidden-checker'>
+                        <p class='about-text short-text'>
+                            {{ gardener.about_me|truncatechars:100 }}
+                            {% if plant.description|length > 100 %}
+                                <label for='read-more-checker' class='read-toggle'>(show more)</label>
+                            {% endif %}
+                        </p>
+                        <p class='about-text full-text'>
+                            {{ plant.description }}
+                            <label for='read-more-checker' class='read-toggle'>(show less)</label>
+                        </p>
+                    </div>
+
+
+                    <div class='details-actions-wrapper'>
+                        <a href='{% url "edit-plant" plant.pk %}' class='btn btn-secondary'>Edit</a>
+                        <a href='{% url "delete-plant" plant.pk %}' class='btn btn-delete'>Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
