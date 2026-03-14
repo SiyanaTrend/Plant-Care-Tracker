@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Plants Catalogue{% endblock %}
+
+{% block content %}
+    <div class='catalogue'>
+        {% for plant in plants %}
+            <h3>My Catalogue</h3>
+            <div class='plant-grid'>
+                <div class='plant-card'>
+                    {% static 'images/plant-avatar.jpg' as default_plant %}
+                    <img src="{{ plant.image_url|default:default_plant }}" alt='plant'>
+                    <h4>{{ plant.plant_name }}</h4>
+                    <p> 📌 {{ plant.city }}, {{ plant.address }}</p>
+                    <p> 💧 {{ plant.watering_frequency }} times / month</p>
+
+                    <div class='details-actions-wrapper'>
+                        <a href='#' class='btn btn-maintenance'>Care</a>
+                        <a href='{% url "plant-details" plant.pk %}' class='btn btn-details'>Details</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <h5>No plants added yet!</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
