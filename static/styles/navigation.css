@@ -1,23 +1,23 @@
 .section.site-header {
-    margin-top: 2em;
-}
-
-.section.site-header .inner {
-    display: flex;
-    align-items: center;
+    margin-top: 1.5em;
 }
 
 .section.site-header .site-branding {
+    flex: 0 0 auto;
     display: flex;
-    gap: 1em;
+    gap: 0.8em;
     align-items: center;
 }
 
 .section.site-header .site-logo {
-    flex: 0 0 4%;
-    border-radius: 50%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6em;
     background: var(--flower-accent);
+    border-radius: 50%;
+    width: 1.8em;
+    height: 1.8em;
 }
 
 .section.site-header .site-logo > img {
@@ -28,7 +28,7 @@
     text-transform: uppercase;
     font-family: 'Bebas Neue', serif;
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 2;
     text-decoration: none;
     color: var(--green);
