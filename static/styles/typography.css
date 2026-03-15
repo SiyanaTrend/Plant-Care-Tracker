@@ -39,7 +39,6 @@ main {
     text-align: center;
     margin-top: 1em;
     color: var(--green);
-    font-style: italic;
 }
 
 .inner {
