@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 
 {% block title %}{{ gardener.nickname }}'s Profile Details{% endblock %}
@@ -23,7 +23,7 @@
 
                 <div class='profile-right'>
                     <h4>{{ gardener.full_name|upper }}</h4>
-                    <p class='nickname'>@{{ gardener.nickname }}</p>
+                    <p class='nickname'> @{{ gardener.nickname }}</p>
 
                     <div class='info-details'>
                         <p><strong>Email:</strong> {{ gardener.email }}</p>
