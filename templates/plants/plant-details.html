@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 
 {% block title %}{{ plant.plant_name }}'s Details{% endblock %}
@@ -21,9 +21,9 @@
                 <div class='profile-right'>
                     <h4>{{ plant.plant_name }}</h4>
                     <div class='info-details'>
-                        <p><strong>Location:</strong> {{ plant.city }}, {{ plant.address }}</p>
-                        <p><strong>Added on:</strong> {{ plant.created_at|date:"d M Y" }}</p>
-                        <p><strong>Tags:</strong>
+                        <p><strong>Location:</strong>  {{ plant.city }}, {{ plant.address }}</p>
+                        <p><strong>Added on:</strong>  {{ plant.created_at|date:"d M Y" }}</p>
+                        <p><strong>Tags: </strong>
                             {% for tag in plant.tags.all %}
                                 <span class='tag-badge'>🍃 {{ tag.tag_name }}</span>
                             {% endfor %}
