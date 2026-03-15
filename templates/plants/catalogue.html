@@ -1,28 +1,35 @@
-{% extends 'common/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 
 {% block title %}Plants Catalogue{% endblock %}
 
 {% block content %}
     <div class='catalogue'>
-        {% for plant in plants %}
-            <h3>My Catalogue</h3>
+        <h3>My Catalogue</h3>
+        {% if plants %}
             <div class='plant-grid'>
-                <div class='plant-card'>
-                    {% static 'images/plant-avatar.jpg' as default_plant %}
-                    <img src="{{ plant.image_url|default:default_plant }}" alt='plant'>
-                    <h4>{{ plant.plant_name }}</h4>
-                    <p> 📌 {{ plant.city }}, {{ plant.address }}</p>
-                    <p> 💧 {{ plant.watering_frequency }} times / month</p>
-
-                    <div class='details-actions-wrapper'>
-                        <a href='#' class='btn btn-maintenance'>Care</a>
-                        <a href='{% url "plant-details" plant.pk %}' class='btn btn-details'>Details</a>
+                {% for plant in plants %}
+                    <div class='plant-card'>
+                        {% static 'images/plant-avatar.jpg' as default_plant %}
+                        <img src="{{ plant.image_url|default:default_plant }}" alt='plant'>
+                        <h4>{{ plant.plant_name }}</h4>
+                        <p> 📌 {{ plant.city }}, {{ plant.address }}</p>
+                        <p> 💧 {{ plant.watering_frequency }} times / month</p>
+                        {% if not plant.fertilizing_frequency == 0 %}
+                            <p> 🧪 {{ plant.fertilizing_frequency }} times / year</p>
+                        {% endif %}
+                        {% if plant.fertilizing_frequency == 0 %}
+                            <p> ✂️ {{ plant.pruning_frequency }} times / year</p>
+                        {% endif %}
+                        <div class='details-actions-wrapper'>
+                            <a href='#' class='btn btn-maintenance'>Care</a>
+                            <a href='{% url "plant-details" plant.pk %}' class='btn btn-details'>Details</a>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        {% empty %}
+        {% else %}
             <h5>No plants added yet!</h5>
-        {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}
