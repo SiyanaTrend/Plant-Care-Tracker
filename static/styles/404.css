@@ -6,6 +6,7 @@
     text-align: center;
     background-color: var(--form-background);
     border-radius: 15px;
+    padding: 1.5em;
 }
 
 .error-content h2 {
@@ -20,9 +21,9 @@
 }
 
 .error-content p {
-    font-size: 1.6em;
+    font-size: 1.3em;
     color: var(--dark-green);
-    margin-bottom: 2.5em;
+    margin-bottom: 2em;
 }
 
 .btn-back {
@@ -37,13 +38,11 @@
 }
 
 .btn-back:hover {
-    background: var(--dark-green);
+    background: var(--dark-purple);
     color: white;
     text-decoration: none;
     transform: translateX(3px);
 }
-
-
 
 @keyframes shake {
     from {

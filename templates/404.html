@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 
 {% block extra_css %}
@@ -10,7 +10,7 @@
         <div class="error-content">
             <div class="error-image">🥀</div>
             <h2>Oops! Root Error...</h2>
-            <p>Error 404: It seems this page has withered away or was never planted in our garden.</p>
+            <p>Error 404: It seems this page has withered away or was never planted in our garden!</p>
             <a href="{% url 'home' %}" class="btn-back">Go back to PLANT CARE TRACKER</a>
         </div>
     </div>
