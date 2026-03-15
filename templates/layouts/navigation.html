@@ -1,0 +1,28 @@
+{% load get_user %}
+{% load static %}
+
+<div class="inner">
+    <div class="site-branding">
+        <div class="site-logo">
+            <span class='icon'>🌺</span>
+        </div>
+        <div class="site-description">
+            <a href="{% url 'home' %}">Plant Care Tracker</a>
+        </div>
+        {% get_user as profile %}
+        {% if profile %}
+            <nav>
+                <ul>
+                    <li><a href="{% url 'catalogue' %}">My Catalogue</a></li>
+                    <li><a href="{% url 'create-plant' %}">New Plant</a></li>
+                    <li><a href="#">Statistics</a></li>
+                    <li><a href="{% url 'gardener-details' %}">{{ profile.nickname }}'s Profile</a></li>
+                </ul>
+            </nav>
+        {% else %}
+            <nav>
+                <a href="{% url 'create-gardener' %}">Create Profile</a>
+            </nav>
+        {% endif %}
+    </div>
+</div>
