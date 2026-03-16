@@ -34,8 +34,8 @@ class PlantBaseForm(forms.ModelForm):
                 'rows': 3,
             }),
             'image_url': forms.URLInput(attrs={'placeholder': 'https://...'}),
-            'city': forms.TextInput(attrs={'placeholder': 'example: Sofia'}),
-            'address': forms.TextInput(attrs={'placeholder': 'example: Living room, shelf 2'}),
+            'city': forms.TextInput(),
+            'address': forms.TextInput(),
             'tags': forms.SelectMultiple(attrs={'class': 'tags-select'})
         }
 
@@ -46,10 +46,10 @@ class PlantBaseForm(forms.ModelForm):
         }
 
 
-class PlantCreateForm(HiddenHelpText, PlantBaseForm):
+class PlantCreateForm(PlantBaseForm):
     class Meta(PlantBaseForm.Meta):
         exclude = ['gardener', 'species', 'image_url', 'watering_frequency', 'fertilizing_frequency',
-                   'pruning_frequency', 'tags']
+                   'pruning_frequency']
         pass
 
 
