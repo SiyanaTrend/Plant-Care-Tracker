@@ -11,8 +11,9 @@
         
             <h3>Are you sure, {{ gardener.nickname }}?</h3>
             {% if gardener.plants.exists %}
-                <p>If you delete your profile,all your <strong>{{ gardener.plants.count }} plants</strong> and their
-                    care history will be gone forever!</p>
+                <p>If you delete your profile, your 
+                    <strong>{{ gardener.plants.count }} plant{{ gardener.plants.count|pluralize }}</strong>
+                    and all maintenance history will be gone forever!</p>
             {% else %}
                 <p>If you delete your profile, all your data will be gone forever!</p>
             {% endif %}

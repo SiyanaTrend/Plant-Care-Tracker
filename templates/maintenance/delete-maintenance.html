@@ -9,8 +9,10 @@
                 <span class='icon'>🌺</span>
             </div>
 
-            <h3>Delete '{{ maintenancerecord.plant.plant_name }}'s care action'?</h3>
-            <p>Are you sure you want to remove this care action from your maintenance history?</p>
+            <h3>Delete care action?</h3>
+            <p>Are you sure you want to remove this care action from 
+                {{ maintenancerecord.plant.plant_name }} maintenance history?
+            </p>
 
             <form method='post' class='delete-actions'>
                 {% csrf_token %}
