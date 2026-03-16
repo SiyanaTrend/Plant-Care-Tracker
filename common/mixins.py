@@ -12,6 +12,8 @@ class ReadOnlyMixin:
 
         for field in self.fields.values():
             field.widget.attrs['readonly'] = True
+            field.widget.attrs['disabled'] = True
+            field.required = False
 
 
 class HiddenHelpText:
