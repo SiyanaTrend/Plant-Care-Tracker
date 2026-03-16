@@ -176,11 +176,11 @@
 
 .details-actions-wrapper .btn {
     flex: 1;
-    height: 3.5em !important;
+    height: 3.2em !important;
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    padding: 0.8em 1em !important;
+    padding: 1em 0.3em !important;
     border-radius: 20px !important;
     font-size: 1rem !important;
     font-weight: bold !important;
