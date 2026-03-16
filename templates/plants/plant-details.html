@@ -8,12 +8,17 @@
         <div class='card profile-card'>
             <div class='profile-layout'>
                 <div class='profile-left'>
+
                     {% static 'images/plant-avatar.jpg' as default_plant %}
                     <div class='avatar-wrapper'>
-                        <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
+                        <a href="{% url 'maintenance-details' plant.pk %}">
+                            <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
+                        </a>
                     </div>
                     {% if plant.species %}
-                        <p class='pro-label'>{{ plant.species|upper }}</p>
+                        <p class='pro-label'>
+                            <a href='{% url 'maintenance-details' plant.pk %}'>{{ plant.species|upper }}</a>
+                        </p>
                     {% endif %}
                 </div>
 
@@ -63,10 +68,11 @@
                     </div>
 
                     <div class='details-actions-wrapper'>
-                        <a href='{% url "edit-plant" plant.pk %}' class='btn btn-secondary'>Edit</a>
-                        <a href='{% url "delete-plant" plant.pk %}' class='btn btn-delete'>Delete</a>
+                        <a href="{% url 'edit-plant' plant.pk %}" class='btn btn-secondary'>Edit</a>
+                        <a href="{% url 'delete-plant' plant.pk %}" class='btn btn-delete'>Delete</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
