@@ -21,7 +21,10 @@ class GardenerBaseForm(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(attrs={'placeholder': 'example: john.doe@mail.com'}),
             'profile_picture': forms.URLInput(attrs={'placeholder': 'https://...'}),
-            'about_me': forms.Textarea(attrs={'placeholder': 'Share something interesting about you...'}),
+            'about_me': forms.Textarea(attrs={
+                'placeholder': 'Share something interesting about you...',
+                'rows': 3,
+            }),
         }
 
 

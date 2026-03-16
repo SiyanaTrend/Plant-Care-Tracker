@@ -29,11 +29,20 @@ class PlantBaseForm(forms.ModelForm):
         widgets = {
             'plant_name': forms.TextInput(attrs={'placeholder': 'example: Monstera Deliciosa'}),
             'species': forms.TextInput(attrs={'placeholder': 'example: Monstera'}),
-            'description': forms.Textarea(attrs={'placeholder': 'Share more about your green friend...'}),
+            'description': forms.Textarea(attrs={
+                'placeholder': 'Share more about your green friend...',
+                'rows': 3,
+            }),
             'image_url': forms.URLInput(attrs={'placeholder': 'https://...'}),
             'city': forms.TextInput(attrs={'placeholder': 'example: Sofia'}),
             'address': forms.TextInput(attrs={'placeholder': 'example: Living room, shelf 2'}),
             'tags': forms.SelectMultiple(attrs={'class': 'tags-select'})
+        }
+
+        error_messages = {
+            'image_url': {
+                'invalid': 'This URL is not valid. Please enter a valid image link!',
+            }
         }
 
 
