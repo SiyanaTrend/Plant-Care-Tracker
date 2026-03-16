@@ -7,7 +7,6 @@
     <div class='container'>
         <div class='card profile-card'>
             <div class='profile-layout'>
-
                 <div class='profile-left'>
                     {% static 'images/plant-avatar.jpg' as default_plant %}
                     <div class='avatar-wrapper'>
@@ -21,13 +20,15 @@
                 <div class='profile-right'>
                     <h4>{{ plant.plant_name }}</h4>
                     <div class='info-details'>
-                        <p><strong>Location:</strong>  {{ plant.city }}, {{ plant.address }}</p>
-                        <p><strong>Added on:</strong>  {{ plant.created_at|date:"d M Y" }}</p>
-                        <p><strong>Tags: </strong>
-                            {% for tag in plant.tags.all %}
-                                <span class='tag-badge'>🍃 {{ tag.tag_name }}</span>
-                            {% endfor %}
-                        </p>
+                        <p><strong>Location:</strong> {{ plant.city }}, {{ plant.address }}</p>
+                        <p><strong>Added on:</strong> {{ plant.created_at|date:'d M Y' }}</p>
+                        {% if plant.tags.exists %}
+                            <p><strong>Tags: </strong>
+                                {% for tag in plant.tags.all %}
+                                    <span class='tag-badge'>🍃 {{ tag.tag_name }}</span>
+                                {% endfor %}
+                            </p>
+                        {% endif %}
                     </div>
                     <div class='care-info-grid'>
                         <div class='care-item'>
