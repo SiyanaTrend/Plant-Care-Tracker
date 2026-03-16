@@ -11,7 +11,7 @@ class MaintenanceBaseForm(forms.ModelForm):
 
         labels = {
             'action': 'Care Action:',
-            'date': 'Date:',
+            'date': 'Add on:',
             'notes': 'Notes:',
         }
 
@@ -23,6 +23,20 @@ class MaintenanceBaseForm(forms.ModelForm):
                 'rows': 3,
             }),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+
+        plant = self.instance.plant
+
+        if plant and date and date < plant.created_at.date():
+            self.add_error(
+                'date',
+                f"Date cannot be before plant creation date ({plant.created_at.date()})."
+            )
+
+        return cleaned_data
 
 
 class MaintenanceCreateForm(MaintenanceBaseForm):

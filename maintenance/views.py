@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from maintenance.forms import MaintenanceCreateForm, MaintenanceEditForm, MaintenanceDeleteForm
@@ -19,10 +19,11 @@ class MaintenanceCreateView(CreateView):
     form_class = MaintenanceCreateForm
     template_name = 'maintenance/create-maintenance.html'
 
-    def form_valid(self, form: MaintenanceCreateForm):
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
         plant = get_object_or_404(Plant, pk=self.kwargs['plant_pk'])
-        form.instance.plant = plant
-        return super().form_valid(form)
+        kwargs['instance'] = MaintenanceRecord(plant=plant)
+        return kwargs
 
     def get_success_url(self):
         return reverse('maintenance-details', kwargs={'plant_pk': self.kwargs['plant_pk']})
@@ -44,7 +45,6 @@ class MaintenanceDeleteView(DeleteView):
     form_class = MaintenanceDeleteForm
     template_name = 'maintenance/delete-maintenance.html'
     pk_url_kwarg = 'maintenance_pk'
-    success_url = reverse_lazy('catalogue')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
