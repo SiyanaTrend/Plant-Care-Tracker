@@ -181,3 +181,73 @@ form textarea::placeholder {
     background: var(--delete-btn-hover) !important;
     box-shadow: 0 5px 15px rgba(230, 141, 163, 0.4) !important;
 }
+
+.card fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card legend {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+div#id_action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+div#id_action div {
+    display: inline-block;
+}
+
+div#id_action input[type="radio"] {
+    display: none;
+}
+
+div#id_action label {
+    display: inline-block;
+    padding: 3px 15px;
+    background: white;
+    border: 2px solid var(--flower-accent);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: normal;
+    color: var(--green);
+    margin: 0;
+}
+
+div#id_action label:hover {
+    background: var(--flower-accent);
+}
+
+div#id_action label:has(input[type="radio"]:checked) {
+    background: var(--flower-accent) !important;
+    color: white !important;
+    border-color: var(--flower-accent) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* backup for older browsers */
+div#id_action input[type="radio"]:checked + label {
+    background: var(--flower-accent) !important;
+    color: white !important;
+    border-color: var(--flower-accent) !important;
+}
+
+.delete-card div#id_action div:has(input[type="radio"]:not(:checked)) {
+    display: none;
+}
+
+.delete-card div#id_action input[type="radio"]:disabled + label {
+    opacity: 1;
+    cursor: default;
+}
