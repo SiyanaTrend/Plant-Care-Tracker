@@ -32,7 +32,7 @@
                             {% if gardener.plants.count %}
                                 {{ gardener.plants.count }}
                             {% else %}
-                                <a href='{% url "create-plant" %}' class='add-link'>Add plant</a>
+                                <a href="{% url 'create-plant' %}" class='add-link'>Add plant</a>
                             {% endif %}
                         </p>
                     </div>
@@ -55,8 +55,8 @@
                     {% endif %}
 
                     <div class='details-actions-wrapper'>
-                        <a href='{% url "edit-gardener" %}' class='btn btn-secondary'>Edit</a>
-                        <a href='{% url "delete-gardener" %}' class='btn btn-delete'>Delete</a>
+                        <a href="{% url 'edit-gardener' %}" class='btn btn-secondary'>Edit</a>
+                        <a href="{% url 'delete-gardener' %}" class='btn btn-delete'>Delete</a>
                     </div>
                 </div>
             </div>

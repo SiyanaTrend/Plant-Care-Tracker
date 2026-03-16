@@ -1,21 +1,22 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>{% block title %}Plant Care Tracker{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel='stylesheet' href="{% static 'styles/style.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
-<header class="section site-navigation">
+<header class='section site-navigation'>
         {% include 'layouts/navigation.html' %}
 </header>
 
 <main>
-    <div class="inner">
+    <div class='inner'>
         {% block content %}
         {% endblock %}
     </div>
@@ -24,6 +25,5 @@
 <footer>
     {% include 'layouts/footer.html' %}
 </footer>
-
 </body>
 </html>
