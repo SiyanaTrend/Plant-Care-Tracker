@@ -1,9 +1,3 @@
-.catalogue h5 {
-    margin-top: 5em;
-    color: var(--dark-green);
-    font-size: 2em;
-}
-
 .plant-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -59,4 +53,9 @@
     background: var(--dark-purple) !important;
     color: white !important;
     box-shadow: 0 5px 15px rgb(213, 160, 213) !important;
+}
+
+.catalog-no-plants {
+    margin-top: 7em;
+    font-size: 1.4rem;
 }

@@ -4,33 +4,42 @@
 {% block title %}Plants Catalogue{% endblock %}
 
 {% block content %}
-    <h3>My Catalogue</h3>
-    <div class='catalogue'>
-        {% if plants %}
+    {% if plants %}
+        <h3>My Catalogue</h3>
+        <div class='catalogue'>
             <div class='plant-grid'>
                 {% for plant in plants %}
                     <div class='plant-card'>
+
                         {% static 'images/plant-avatar.jpg' as default_plant %}
                         <img src="{{ plant.image_url|default:default_plant }}" alt='plant'>
                         <h4>{{ plant.plant_name }}</h4>
                         <p> 📌 {{ plant.city }}, {{ plant.address }}</p>
-                        <p><strong>needs:</strong></p>
-                        <p> 💧 {{ plant.watering_frequency }} times / month</p>
-                        {% if not plant.fertilizing_frequency == 0 %}
-                            <p> 🧪 {{ plant.fertilizing_frequency }} times / year</p>
+
+                        <p><small><strong>needs:</strong></small></p>
+                        <p> 💧 {{ plant.watering_frequency }} time{{ plant.watering_frequency|pluralize }} /
+                            month</p>
+                        {% if plant.fertilizing_frequency > 0 %}
+                            <p> 🧪 {{ plant.fertilizing_frequency }} time{{ plant.fertilizing_frequency|pluralize }}
+                                /
+                                year</p>
                         {% endif %}
-                        {% if not plant.fertilizing_frequency == 0 %}
-                            <p> ✂️ {{ plant.pruning_frequency }} times / year</p>
+                        {% if plant.pruning_frequency > 0 %}
+                            <p> ✂️ {{ plant.pruning_frequency }} time{{ plant.pruning_frequency|pluralize }} /
+                                year</p>
                         {% endif %}
+
                         <div class='details-actions-wrapper'>
-                            <a href='{% url "maintenance-details" plant.pk %}' class='btn btn-maintenance'>Care</a>
-                            <a href='{% url "plant-details" plant.pk %}' class='btn btn-details'>Details</a>
+                            <a href="{% url 'maintenance-details' plant.pk %}" class='btn btn-maintenance'>Care</a>
+                            <a href="{% url 'plant-details' plant.pk %}" class='btn btn-details'>Details</a>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-        {% else %}
-            <h5>No plants added yet!</h5>
-        {% endif %}
-    </div>
+        </div>
+    {% else %}
+        <div class='catalog-no-plants'>
+            <h4>No plants added yet!</h4>
+        </div>
+    {% endif %}
 {% endblock %}
