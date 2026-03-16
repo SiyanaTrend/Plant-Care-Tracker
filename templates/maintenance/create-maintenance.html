@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% block title %}New Care{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card'>
+            <form method='post' action=''>
+                <h4>New Care</h4>
+                {% csrf_token %}
+                {{ form }}
+                <button type='submit'>Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

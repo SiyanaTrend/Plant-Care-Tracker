@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{{ plant.plant_name }}'s Care Details{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card profile-card'>
+            <div class='profile-layout'>
+                <div class='profile-left'>
+                    {% static 'images/plant-avatar.jpg' as default_plant %}
+                    <div class='avatar-wrapper'>
+                        <img src='{{ plant.image_url|default:default_plant }}' alt='plant'
+                             class='avatar'>
+                    </div>
+                    <p class='pro-label'>{{ plant.plant_name }}</p>
+                    <span class='tag-badge'> 📌 {{ plant.city }}, {{ plant.address }}</span>
+                    <p>needs:</p>
+                    <span class='tag-badge'> 💧 {{ plant.watering_frequency }} times / month</span>
+                    {% if not maintenancerecord.plant.fertilizing_frequency == 0 %}
+                        <span class='tag-badge'> 🧪 {{ plant.fertilizing_frequency }} times / year</span>
+                    {% endif %}
+                    {% if not maintenancerecord.plant.fertilizing_frequency == 0 %}
+                        <span class='tag-badge'> ✂️ {{ plant.pruning_frequency }} times / year</span>
+                    {% endif %}
+                    {% if plant.tags.exists %}
+                        {% for tag in plant.tags.all %}
+                            <span class='tag-badge'>🍃 {{ tag.tag_name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class='profile-right'>
+                    <h4>Maintenance History</h4>
+                    <div class='maintenance-list'>
+                        {% for record in plant.maintenance_records.all %}
+                            <div class='maintenance-details'>
+                                <div class='info-details'>
+                                    <p><strong>Care action:</strong> {{ record.action }}</p>
+                                    <p><strong>Made on:</strong> {{ record.date|date:"d M Y" }}</p>
+
+                                    {% if record.notes %}
+                                        <p><strong>Notes:</strong></p>
+                                        <div class='about-container'>
+                                            <input type='checkbox' id='read-more-checker' class='hidden-checker'>
+                                            <p class='about-text short-text'>
+                                                {{ record.notes|truncatechars:20 }}
+                                                {% if record.notes|length > 20 %}
+                                                    <label for='read-more-checker' class='read-toggle'>(show
+                                                        more)</label>
+                                                {% endif %}
+                                            </p>
+                                            <p class='about-text full-text'>
+                                                {{ record.notes }}
+                                                <label for='read-more-checker' class='read-toggle'>(show less)</label>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class='delete-actions vertical-buttons'>
+                                    <a href='{% url "edit-maintenance" record.pk %}'
+                                       class='btn btn-secondary'>Edit</a>
+                                    <a href='{% url "delete-maintenance" record.pk %}'
+                                       class='btn btn-delete'>Delete</a>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>No care actions recorded yet!</p>
+                        {% endfor %}
+                    </div>
+                    <div class='details-actions-wrapper'>
+                        <a href='{% url "create-maintenance" plant.pk %}' class='btn btn-secondary'>Add Maintenance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

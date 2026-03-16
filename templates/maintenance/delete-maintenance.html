@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Delete {{ maintenancerecord.plant.plant_name }}'s Care Action{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card delete-card'>
+            <div class='warning-icon'>
+                <span class='icon'>🌺</span>
+            </div>
+
+            <h3>Delete '{{ maintenancerecord.plant.plant_name }}'s care action'?</h3>
+            <p>Are you sure you want to remove this care action from your maintenance history?</p>
+
+            <form method='post' class='delete-actions'>
+                {% csrf_token %}
+                <div class='readonly-fields-container'>
+                    {{ form }}
+                </div>
+                <div class='delete-actions vertical-buttons'>
+                    <button type='submit' class='btn btn-delete'>Yes, delete!</button>
+                    <a href='{% url "maintenance-details" maintenancerecord.plant.pk %}' class='btn btn-secondary'>No,
+                        keep it!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
