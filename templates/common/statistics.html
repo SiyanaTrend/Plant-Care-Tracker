@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html' %}
+{% load garden_extras %}
+
+{% block title %}Garden Analytics{% endblock %}
+
+{% block content %}
+    <div class='statistics'>
+        <h3 class='statistics-title'>Garden Analytics</h3>
+
+        {% garden_health_details all_plants as health %}
+
+        <div class='stats-grid'>
+            <div class='stat-card highlight'>
+                <h3>{{ health.score }}%</h3>
+                <p>Garden Health Score</p>
+                {% if all_plants %}
+                    {% if health.needs_attention %}
+                        <div class='attention-list'>
+                            <small><strong>Needs watering:</strong></small>
+                            {% for plant in health.needs_attention %}
+                                <p class='warning-item'>
+                                    ⚠️ <a href="{% url 'maintenance-details' plant.pk %}">{{ plant.plant_name }}</a>
+                                </p>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class='success-text'>✨ All plants are happy!</p>
+                    {% endif %}
+                {% else %}
+                    <p class='success-text'>No plants to track yet!</p>
+                {% endif %}
+
+            </div>
+
+            <div class='stat-card'>
+                <h3>{{ total_plants }}</h3>
+                <p>Total Plants</p>
+            </div>
+
+            <div class='stat-card'>
+                <h3>{{ total_records }}</h3>
+                <p>Total Care Actions</p>
+            </div>
+        </div>
+
+        <div class='stats-details'>
+            <div class='details-box'>
+                <h4>🌟 Star Plant{{ star_plants|pluralize }}</h4>
+                {% if star_plants %}
+                    {% for plant in star_plants %}
+                        <p><strong>{{ plant.plant_name }}</strong></p>
+                    {% endfor %}
+                    <small>
+                        with {{ max_actions }} care record{{ max_actions|pluralize }}
+                        {% if star_plants.count > 1 %} each{% endif %}
+                    </small>
+                {% else %}
+                    <p>No records found yet!</p>
+                {% endif %}
+            </div>
+
+            <div class='details-box'>
+                <h4>🏷️ Popular Tags</h4>
+                <ul class='tag-list'>
+                    {% for tag in top_tags %}
+                        <li><span class='tag-badge'>🍃 {{ tag.tag_name }} ({{ tag.count }})</span></li>
+                    {% empty %}
+                        <li>No tags used!</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

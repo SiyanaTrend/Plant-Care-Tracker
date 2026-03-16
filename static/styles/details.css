@@ -54,6 +54,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+.pro-label a {
+    text-decoration: none;
+    color: var(--dark-green);
+}
+
+.pro-label a:hover {
+    text-decoration: none;
+    color: var(--dark-purple);
+}
+
 .profile-right {
     flex: 1;
     min-width: 0;
@@ -355,4 +365,94 @@
 .maintenance-details .btn-delete:hover {
     background: var(--delete-btn-hover) !important;
     box-shadow: 0 5px 15px rgba(230, 141, 163, 0.4) !important;
+}
+
+.statistics-title {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2em;
+    margin-bottom: 2em;
+    margin-top: 2.4em;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.8em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-card.highlight {
+    background: var(--dark-purple);
+    color: white;
+}
+
+.stat-card h3 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.stats-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2em;
+}
+
+.details-box {
+    background: #fdf6fb;
+    padding: 1.2em;
+    border-left: 5px solid var(--flower-accent);
+    border-radius: 10px;
+}
+
+.details-box ul {
+    list-style: none;
+}
+
+.attention-list {
+    margin-top: 0.9em;
+    padding-top: 0.6em;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+}
+
+.attention-list small {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.6em;
+}
+
+.warning-item {
+    margin: 0.3em 0;
+    font-size: 0.9rem;
+}
+
+.warning-item a {
+    color: var(--warning-yellow);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.warning-item a:hover {
+    border-radius: 5px;
+    padding: 0.2em;
+    background: var(--flower-accent);
+    color: var(--dark-purple);
+}
+
+.success-text {
+    margin-top: 0.8em;
+    font-size: 0.9rem;
 }
