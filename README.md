@@ -73,9 +73,9 @@ The application is built using a modular architecture with four distinct Django 
 
 4. **Environment Configuration**: Create a **`.env`** file in the root directory based on **`.env.example`**.
     * **Generate your SECRET_KEY**: Run the following command in your terminal to generate a secure key:
-      ```bash
-      python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
-      ```
+    ```bash
+    python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+    ```
     * **Set up your local PostgreSQL database** and enter the credentials in the `.env` file.
     ```env
     SECRET_KEY=your_secret_key_here
