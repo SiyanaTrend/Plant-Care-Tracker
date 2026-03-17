@@ -71,7 +71,12 @@ The application is built using a modular architecture with four distinct Django 
    ```bash
    pip install -r requirements.txt
 
-4. **Environment Configuration**: Create a **`.env`** file in the root directory based on the provided **`.env.example`**. **You must set up your own local PostgreSQL database and enter the credentials here:**
+4. **Environment Configuration**: Create a **`.env`** file in the root directory based on **`.env.example`**.
+    * **Generate your SECRET_KEY**: Run the following command in your terminal to generate a secure key:
+      ```bash
+      python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+      ```
+    * **Set up your local PostgreSQL database** and enter the credentials in the `.env` file.
     ```env
     SECRET_KEY=your_secret_key_here
     DEBUG=True
@@ -81,7 +86,6 @@ The application is built using a modular architecture with four distinct Django 
     DB_PASSWORD=your_postgres_password
     DB_HOST=127.0.0.1
     DB_PORT=5432
-    
 5. **Apply Migrations:**
     ```bash
     python manage.py migrate
