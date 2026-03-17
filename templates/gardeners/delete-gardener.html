@@ -11,7 +11,7 @@
         
             <h3>Are you sure, {{ gardener.nickname }}?</h3>
             {% if gardener.plants.exists %}
-                <p>If you delete your profile, your 
+                <p>If you delete your profile, your
                     <strong>{{ gardener.plants.count }} plant{{ gardener.plants.count|pluralize }}</strong>
                     and all maintenance history will be gone forever!</p>
             {% else %}
