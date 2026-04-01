@@ -59,3 +59,14 @@
     margin-top: 7em;
     font-size: 1.4rem;
 }
+
+@media (max-width: 480px) {
+    .plant-grid {
+        grid-template-columns: 1fr !important;
+        padding: 10px;
+    }
+
+    .plant-card img {
+        height: auto;
+    }
+}

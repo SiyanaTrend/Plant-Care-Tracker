@@ -1,3 +1,9 @@
+@media (max-width: 600px) {
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.6rem !important; }
+    body { font-size: 14px; }
+}
+
 * {
     margin: 0;
     padding: 0;
