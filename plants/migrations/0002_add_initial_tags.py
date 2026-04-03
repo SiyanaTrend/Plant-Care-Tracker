@@ -1,0 +1,36 @@
+from django.db import migrations
+
+
+INITIAL_TAGS = [
+    'Indoor', 'Outdoor', 'Tropical', 'Succulent', 'Cactus',
+    'Pet Friendly', 'Low Light', 'Bright Light', 'Air Purifying',
+    'High Humidity', 'Medicinal', 'Edible', 'Fragrant',
+    'Beginner Friendly', 'Hard To Kill', 'Flowering', 'Trailing',
+]
+
+
+def create_initial_tags(apps, schema_editor):
+    tag_model = apps.get_model('plants', 'Tag')
+
+    for name in INITIAL_TAGS:
+        exists = tag_model.objects.filter(tag_name__iexact=name).exists()
+
+        if not exists:
+            tag_model.objects.create(tag_name=name)
+
+
+def remove_initial_tags(apps, schema_editor):
+    tag_model = apps.get_model('plants', 'Tag')
+
+    for name in INITIAL_TAGS:
+        tag_model.objects.filter(tag_name__iexact=name).delete()
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('plants', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.RunPython(create_initial_tags, reverse_code=remove_initial_tags),
+    ]
