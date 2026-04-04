@@ -1,6 +1,9 @@
+import random
+from django.conf import settings
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, ValidationError
 from django.db import models
-
+from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 from plants.validators import PlantNameValidator
 
 
@@ -34,7 +37,7 @@ class Plant(models.Model):
     plant_name = models.CharField(
         max_length=100,
         validators=[
-            MinLengthValidator(5, 'The plant name must be at least 5 chars long!'),
+            MinLengthValidator(3, 'The plant name must be at least 3 chars long!'),
             PlantNameValidator(),
         ],
         help_text='*Allowed plant names can contain letters, digits, spaces and hyphens.'
@@ -44,9 +47,12 @@ class Plant(models.Model):
         null=True,
         blank=True,
     )
-    description = models.TextField()
-
-    image_url = models.URLField(
+    description = models.TextField(
+        null=True,
+        blank=True,
+    )
+    image = CloudinaryField(
+        'image',
         null=True,
         blank=True,
     )
@@ -62,16 +68,6 @@ class Plant(models.Model):
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
-    )
-    gardener = models.ForeignKey(
-        to='gardeners.Gardener',
-        on_delete=models.CASCADE,
-        related_name='plants',
-    )
-    tags = models.ManyToManyField(
-        to='Tag',
-        related_name='plants',
-        blank=True,
     )
     watering_frequency = models.PositiveIntegerField(
         default=1,
@@ -95,9 +91,34 @@ class Plant(models.Model):
         ],
         help_text='*How many times per year should this plant be pruned?'
     )
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='plants',
+    )
+    tags = models.ManyToManyField(
+        to='Tag',
+        related_name='plants',
+        blank=True,
+    )
+    favourite_by = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL,
+        related_name='favourite_plants',
+        blank=True,
+    )
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        editable=False,
+    )
 
     class Meta:
         ordering = ['plant_name']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = f"{slugify(self.plant_name)}-{random.randint(1, 1000)}"
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.plant_name} - {self.city} ({self.address})'

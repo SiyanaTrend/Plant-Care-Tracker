@@ -1,5 +1,5 @@
 from django.db import models
-from maintenance.choices import ActionPlantChoices
+from common.choices import ActionPlantChoices
 
 
 class MaintenanceRecord(models.Model):
