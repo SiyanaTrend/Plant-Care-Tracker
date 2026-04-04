@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'gardeners.apps.GardenersConfig',
     'plants.apps.PlantsConfig',
     'maintenance.apps.MaintenanceConfig',
     'common.apps.CommonConfig',
     'accounts.apps.AccountsConfig',
-    'cloudinary_storage',
-    'cloudinary',
+    'notifications.apps.NotificationsConfig',
 ]
 
 MIDDLEWARE = [
@@ -137,8 +138,6 @@ AUTH_USER_MODEL = 'accounts.AppUser'
 
 LOGIN_REDIRECT_URL = 'catalogue'
 
-LOGOUT_REDIRECT_URL = 'home'
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('API_KEY'),
@@ -148,3 +147,5 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+COMPANY_EMAIL = config('COMPANY_EMAIL')
