@@ -18,7 +18,7 @@ class FirstAndLastNameValidator:
         self.message = message
 
     def __call__(self, value: str, *args, **kwargs):
-        if not value[0].isupper():
+        if value and not value[0].isupper():
             raise ValidationError(self.message)
 
         for char in value:
