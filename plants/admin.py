@@ -11,23 +11,25 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Plant)
 class PlantAdmin(admin.ModelAdmin):
-    list_display = ('plant_name', 'species', 'city', 'watering_frequency', 'gardener', 'created_at')
-    list_filter = ('city', 'tags', 'gardener', 'watering_frequency')
-    ssearch_fields = ('plant_name', 'species', 'city')
-    filter_horizontal = ('tags',)
+    list_display = ('plant_name', 'species', 'city', 'watering_frequency', 'user', 'created_at')
+    list_filter = ('city', 'tags', 'user', 'watering_frequency')
+    search_fields = ('plant_name', 'species', 'city')
+    filter_horizontal = ('tags', 'favourite_by')
+
+    readonly_fields = ('slug', 'created_at')
+
     fieldsets = (
         ('Basic Information', {
-            'fields': ('plant_name', 'species', 'description', 'image_url')
+            'fields': ('plant_name', 'slug', 'species', 'description', 'image')
         }),
-        ('Location Details', {
-            'fields': ('city', 'address', 'gardener')
+        ('Location & Ownership', {
+            'fields': ('city', 'address', 'user')
         }),
-        ('Care Schedule (Frequencies)', {
-            'description': 'Set the maintenance intervals for this plant.',
+        ('Care Schedule', {
             'fields': ('watering_frequency', 'fertilizing_frequency', 'pruning_frequency')
         }),
-        ('Tags & Metadata', {
-            'fields': ('tags',)
+        ('Tags & Community', {
+            'fields': ('tags', 'favourite_by')
         }),
     )
     list_editable = ('watering_frequency',)
