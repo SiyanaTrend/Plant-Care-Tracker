@@ -1,7 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block title %}{{ gardener.nickname }}'s Profile Details{% endblock %}
+{% block title %}
+    {% if user.gardener.nickname %}
+        {{ user.gardener.nickname }}'s Profile Details
+    {% else %}
+        Profile Details
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div class='container'>
@@ -11,44 +17,50 @@
                 <div class='profile-left'>
                     {% static 'images/gardener-avatar.jpg' as default_avatar %}
                     <div class='avatar-wrapper'>
-                        <img src='{{ gardener.profile_picture|default:default_avatar }}' alt='avatar' class='avatar'>
-                        {% if gardener.is_pro %}
+                        {% if user.gardener.profile_picture %}
+                            <img src='{{ user.gardener.profile_picture.url }}' alt='avatar' class='avatar'>
+                        {% else %}
+                            <img src='{{ default_avatar }}' alt='avatar' class='avatar'>
+                        {% endif %}
+                    
+                        {% if user.gardener.is_pro %}
                             <span class='pro-clover'>🍀</span>
                         {% endif %}
                     </div>
-                    {% if gardener.is_pro %}
+                    {% if user.gardener.is_pro %}
                         <p class='pro-label'>PRO GARDENER</p>
                     {% endif %}
                 </div>
 
                 <div class='profile-right'>
-                    <h4>{{ gardener.full_name|upper }}</h4>
-                    <p class='nickname'> @{{ gardener.nickname }}</p>
-
+                    <h4>{{ user.gardener.full_name|upper }}</h4>
+                    {% if user.gardener.nickname %}
+                        <p class='nickname'> @{{ user.gardener.nickname }}</p>
+                    {% endif %}
                     <div class='info-details'>
-                        <p><strong>Email:</strong> {{ gardener.email }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
                         <p>
                             <strong>Plants in collection:</strong>
-                            {% if gardener.plants.count %}
-                                {{ gardener.plants.count }}
+                            {% if user.plants.count %}
+                                {{ user.plants.count }}
                             {% else %}
                                 <a href="{% url 'create-plant' %}" class='add-link'>Add plant</a>
                             {% endif %}
                         </p>
                     </div>
 
-                    {% if gardener.about_me %}
+                    {% if user.gardener.about_me %}
                         <p><strong>Interesting information about me:</strong></p>
                         <div class='about-container'>
                             <input type='checkbox' id='read-more-checker' class='hidden-checker'>
                             <p class='about-text short-text'>
-                                {{ gardener.about_me|truncatechars:100 }}
-                                {% if gardener.about_me|length > 100 %}
+                                {{ user.gardener.about_me|truncatechars:100 }}
+                                {% if user.gardener.about_me|length > 100 %}
                                     <label for='read-more-checker' class='read-toggle'>(show more)</label>
                                 {% endif %}
                             </p>
                             <p class='about-text full-text'>
-                                {{ gardener.about_me }}
+                                {{ user.gardener.about_me }}
                                 <label for='read-more-checker' class='read-toggle'>(show less)</label>
                             </p>
                         </div>

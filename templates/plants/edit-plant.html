@@ -5,10 +5,13 @@
 {% block content %}
     <div class='container'>
         <div class='card'>
-            <form method='post' action=''>
+            <form method='post' enctype="multipart/form-data">
                 <h4>Edit '{{ plant.plant_name }}'</h4>
                 {% csrf_token %}
                 {{ form }}
+                <p style='margin-top: 20px;'>Can't find the right tag? 
+                    <a href="{% url 'suggest-tag' %}" target="_blank">Suggest a new one here!</a>
+                </p>
                 <button type='submit'>Save</button>
             </form>
         </div>

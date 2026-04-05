@@ -1,4 +1,3 @@
-{% load get_user %}
 {% load static %}
 
 <div class='inner'>
@@ -11,20 +10,45 @@
             <a href="{% url 'home' %}">Plant Care Tracker</a>
         </div>
 
-        {% get_user as profile %}
 
-        {% if profile %}
+        {% if user.is_authenticated %}
             <nav>
                 <ul>
                     <li><a href="{% url 'catalogue' %}">My Catalogue</a></li>
                     <li><a href="{% url 'create-plant' %}">New Plant</a></li>
                     <li><a href="{% url 'statistics' %}">Statistics</a></li>
-                    <li><a href="{% url 'gardener-details' %}">{{ profile.nickname }}'s Profile</a></li>
+                    <li>
+                        <a href="{% url 'notifications-list' %}">
+                            Alerts
+                            {% if unread_count > 0 %}
+                                <span class="notification-badge">{{ unread_count }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'gardener-details' %}">
+                            {% if user.gardener.nickname %}
+                                {{ user.gardener.nickname }}'s Profile
+                            {% else %}
+                                Profile
+                            {% endif %}
+                        </a>
+                    </li>
+
+                    <li>
+                        <form action="{% url 'logout' %}" method='post'>
+                            {% csrf_token %}
+                            <button type='submit' class='nav-logout'>Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         {% else %}
             <nav>
-                <a href="{% url 'create-gardener' %}">Create Profile</a>
+                <ul>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                </ul>
             </nav>
         {% endif %}
     </div>
