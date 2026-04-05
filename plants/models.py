@@ -12,6 +12,9 @@ class Tag(models.Model):
         max_length=60,
         unique=True,
     )
+    is_approved = models.BooleanField(
+        default=False
+    )
 
     def _normalize_name(self):
         return self.tag_name.strip().title()

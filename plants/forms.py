@@ -1,13 +1,26 @@
 from django import forms
 
 from common.mixins import ReadOnlyMixin, HiddenHelpText
-from plants.models import Plant
+from plants.models import Plant, Tag
+
+
+class SuggestTagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['tag_name']
 
 
 class PlantBaseForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if 'tags' in self.fields:
+            from plants.models import Tag
+            self.fields['tags'].queryset = Tag.objects.filter(is_approved=True)
+
     class Meta:
         model = Plant
-        exclude = ['user', 'slug', 'favourite_by']
+        exclude = ['user', 'favourite_by', 'slug']
 
         labels = {
             'plant_name': 'Plant Name:',
@@ -41,7 +54,8 @@ class PlantBaseForm(forms.ModelForm):
 
 class PlantCreateForm(PlantBaseForm):
     class Meta(PlantBaseForm.Meta):
-        exclude = ['species', 'image', 'watering_frequency', 'fertilizing_frequency',
+        exclude = ['user', 'favourite_by', 'slug', 'species', 'image',
+                   'watering_frequency', 'fertilizing_frequency',
                    'pruning_frequency']
 
 

@@ -5,8 +5,9 @@ from plants.models import Plant, Tag
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('tag_name',)
-    search_fields = ('tag_name',)
+    list_display = ('tag_name', 'is_approved')
+    list_filter = ('is_approved',)
+    list_editable = ('is_approved',)
 
 
 @admin.register(Plant)
