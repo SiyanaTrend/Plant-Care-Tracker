@@ -64,5 +64,5 @@ class Gardener(models.Model):
         return self.nickname or 'Anonymous Gardener'
 
     def __str__(self):
-        return self.nickname
+        return self.nickname or self.user.email or 'Anonymous Gardener'
 
