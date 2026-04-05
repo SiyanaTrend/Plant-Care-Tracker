@@ -12,7 +12,11 @@
                     <div class='plant-card'>
 
                         {% static 'images/plant-avatar.jpg' as default_plant %}
-                        <img src="{{ plant.image_url|default:default_plant }}" alt='plant'>
+                        {% if plant.image %}
+                            <img src='{{ plant.image.url }}' alt='plant' class='avatar'>
+                        {% else %}
+                            <img src='{{ default_plant }}' alt='plant' class='avatar'>
+                        {% endif %}
                         <h4>{{ plant.plant_name }}</h4>
                         <p> 📌 {{ plant.city }}, {{ plant.address }}</p>
 

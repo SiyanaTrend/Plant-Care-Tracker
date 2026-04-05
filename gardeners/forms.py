@@ -18,6 +18,9 @@ class GardenerBaseForm(forms.ModelForm):
         }
 
         widgets = {
+            'profile_picture': forms.FileInput(attrs={
+                'class': 'form-control-file',
+            }),
             'about_me': forms.Textarea(attrs={
                 'placeholder': 'Share something interesting about you...',
                 'rows': 3,

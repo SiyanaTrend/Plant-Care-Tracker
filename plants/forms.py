@@ -46,6 +46,9 @@ class PlantBaseForm(forms.ModelForm):
                 'placeholder': 'Share more about your green friend...',
                 'rows': 3,
             }),
+            'image': forms.FileInput(attrs={
+                'class': 'form-control-file',
+            }),
             'city': forms.TextInput(),
             'address': forms.TextInput(),
             'tags': forms.SelectMultiple(attrs={'class': 'tags-select'})
