@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/error-pages.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="error-page">
+        <div class="error-content">
+            <div class="error-image">🔐</div>
+            <h2>Access Denied!</h2>
+            <p>Error 403: Stop right there! You don't have the permissions to enter this greenhouse.</p>
+            <p>This area is reserved for Moderators and Staff only.</p>
+            <a href="{% url 'home' %}" class="btn-back">Return to safety at HOME</a>
+        </div>
+    </div>
+{% endblock %}
