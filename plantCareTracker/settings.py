@@ -161,4 +161,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASS = config('EMAIL_HOST_PASS')
 COMPANY_EMAIL = config('COMPANY_EMAIL')
+DEFAULT_FROM_EMAIL = COMPANY_EMAIL
