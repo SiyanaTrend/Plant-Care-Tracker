@@ -8,6 +8,7 @@
     display: flex;
     gap: 0.8em;
     align-items: center;
+    justify-content: center;
 }
 
 .section.site-navigation .site-logo {
@@ -41,6 +42,8 @@
 
 .section.site-navigation nav ul {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1em;
 }
 
@@ -57,6 +60,27 @@
 .section.site-navigation nav a:hover,
 .section.site-navigation .site-description a:hover {
     color: var(--dark-purple);
+}
+
+.section.site-navigation button.nav-logout {
+    background: none;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 1.13em;
+    letter-spacing: -1.5px;
+    margin: 0;
+    padding: 0;
+}
+
+.section.site-navigation button.nav-logout:hover {
+    color: var(--dark-purple);
+    background: none;
+    transform: none;
+    box-shadow: none;
+}
+
+.notification-badge {
+    color: var(--error-text);
 }
 
 @media (max-width: 820px) {

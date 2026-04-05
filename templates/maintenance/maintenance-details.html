@@ -8,18 +8,22 @@
         <div class='card profile-card'>
             <div class='profile-layout'>
                 <div class='profile-left'>
-                    
+
                     {% static 'images/plant-avatar.jpg' as default_plant %}
                     <div class='avatar-wrapper'>
-                        <a href="{% url 'plant-details' plant.pk %}">
-                            <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
+                        <a href="{% url 'plant-details' plant_slug=plant.slug %}">
+                            {% if plant.image %}
+                                <img src='{{ plant.image.url }}' alt='plant' class='avatar'>
+                            {% else %}
+                                <img src='{{ default_plant }}' alt='plant' class='avatar'>
+                            {% endif %}
                         </a>
                     </div>
-                    
+
                     <p class='pro-label'>
-                        <a href="{% url 'plant-details' plant.pk %}">{{ plant.plant_name|upper }}</a>
+                        <a href="{% url 'plant-details' plant_slug=plant.slug %}">{{ plant.plant_name|upper }}</a>
                     </p>
-                    
+
                     <span class='tag-badge'> 📌 {{ plant.city }}, {{ plant.address }}</span>
 
                     <p><small><strong>needs:</strong></small></p>
@@ -30,7 +34,7 @@
                     {% if plant.pruning_frequency > 0 %}
                         <span class='tag-badge'> ✂️ {{ plant.pruning_frequency }} time{{ plant.pruning_frequency|pluralize }} / year</span>
                     {% endif %}
-                
+
                     {% if plant.tags.exists %}
                         <p><small><strong>tags:</strong></small></p>
                         {% for tag in plant.tags.all %}
@@ -67,17 +71,17 @@
                                     {% endif %}
                                 </div>
                                 <div class='delete-actions vertical-buttons'>
-                                    <a href="{% url 'edit-maintenance' record.pk %}" class='btn btn-secondary'>Edit</a>
-                                    <a href="{% url 'delete-maintenance' record.pk %}" class='btn btn-delete'>Delete</a>
+                                    <a href="{% url 'edit-maintenance' maintenance_pk=record.pk %}" class='btn btn-secondary'>Edit</a>
+                                    <a href="{% url 'delete-maintenance' maintenance_pk=record.pk %}" class='btn btn-delete'>Delete</a>
                                 </div>
                             </div>
                         {% empty %}
                             <p>No care actions recorded yet!</p>
                         {% endfor %}
                     </div>
-                    
+
                     <div class='details-actions-wrapper'>
-                        <a href="{% url 'create-maintenance' plant.pk %}" class='btn btn-secondary'>Add Maintenance</a>
+                        <a href="{% url 'create-maintenance' plant_slug=plant.slug %}" class='btn btn-secondary'>Add Maintenance</a>
                     </div>
                 </div>
             </div>

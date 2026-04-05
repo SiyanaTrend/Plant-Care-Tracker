@@ -8,16 +8,19 @@
             <div class='warning-icon'>
                 <span class='icon'>🌺</span>
             </div>
-        
-            <h3>Are you sure, {{ gardener.nickname }}?</h3>
-            {% if gardener.plants.exists %}
+            {% if user.gardener.nickname %}
+                <h3>Are you sure, {{ user.gardener.nickname }}?</h3>
+            {% else %}
+                <h3>Are you sure, Gardener?</h3>
+            {% endif %}
+            {% if user.gardener.plants.exists %}
                 <p>If you delete your profile, your
-                    <strong>{{ gardener.plants.count }} plant{{ gardener.plants.count|pluralize }}</strong>
+                    <strong>{{ user.gardener.plants.count }} plant{{ user.gardener.plants.count|pluralize }}</strong>
                     and all maintenance history will be gone forever!</p>
             {% else %}
                 <p>If you delete your profile, all your data will be gone forever!</p>
             {% endif %}
-        
+
             <form method='post' class='delete-actions'>
                 {% csrf_token %}
                 <a href="{% url 'catalogue' %}" class='btn btn-secondary'>No, take me back!</a>

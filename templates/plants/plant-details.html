@@ -11,15 +11,26 @@
 
                     {% static 'images/plant-avatar.jpg' as default_plant %}
                     <div class='avatar-wrapper'>
-                        <a href="{% url 'maintenance-details' plant.pk %}">
-                            <img src='{{ plant.image_url|default:default_plant }}' alt='plant' class='avatar'>
+                        <a href="{% url 'maintenance-details' plant_slug=plant.slug %}">
+                            {% if plant.image %}
+                                <img src='{{ plant.image.url }}' alt='plant' class='avatar'>
+                            {% else %}
+                                <img src='{{ default_plant }}' alt='plant' class='avatar'>
+                            {% endif %}
                         </a>
                     </div>
                     {% if plant.species %}
                         <p class='pro-label'>
-                            <a href='{% url 'maintenance-details' plant.pk %}'>{{ plant.species|upper }}</a>
+                            <a href='{% url 'maintenance-details' plant_slug=plant.slug %}'>{{ plant.species|upper }}</a>
                         </p>
                     {% endif %}
+                    <a href="{% url 'favourite-plant' plant_slug=plant.slug %}" class='pro-label favourite'>
+                        {% if request.user in plant.favourite_by.all %}
+                            ❤️ Shed the leaf!
+                        {% else %}
+                            🤍 Leaf a like!
+                        {% endif %}
+                    </a>
                 </div>
 
                 <div class='profile-right'>
@@ -52,24 +63,26 @@
                             <span>{{ plant.pruning_frequency }} times / year</span>
                         </div>
                     </div>
-                    <p><strong>Description:</strong></p>
-                    <div class='about-container'>
-                        <input type='checkbox' id='read-more-checker' class='hidden-checker'>
-                        <p class='about-text short-text'>
-                            {{ plant.description|truncatechars:100 }}
-                            {% if plant.description|length > 100 %}
-                                <label for='read-more-checker' class='read-toggle'>(show more)</label>
-                            {% endif %}
-                        </p>
-                        <p class='about-text full-text'>
-                            {{ plant.description }}
-                            <label for='read-more-checker' class='read-toggle'>(show less)</label>
-                        </p>
-                    </div>
+                    {% if plant.description %}
+                        <p><strong>Description:</strong></p>
+                        <div class='about-container'>
+                            <input type='checkbox' id='read-more-checker' class='hidden-checker'>
+                            <p class='about-text short-text'>
+                                {{ plant.description|truncatechars:100 }}
+                                {% if plant.description|length > 100 %}
+                                    <label for='read-more-checker' class='read-toggle'>(show more)</label>
+                                {% endif %}
+                            </p>
+                            <p class='about-text full-text'>
+                                {{ plant.description }}
+                                <label for='read-more-checker' class='read-toggle'>(show less)</label>
+                            </p>
+                        </div>
+                    {% endif %}
 
                     <div class='details-actions-wrapper'>
-                        <a href="{% url 'edit-plant' plant.pk %}" class='btn btn-secondary'>Edit</a>
-                        <a href="{% url 'delete-plant' plant.pk %}" class='btn btn-delete'>Delete</a>
+                        <a href="{% url 'edit-plant' plant_slug=plant.slug %}" class='btn btn-secondary'>Edit</a>
+                        <a href="{% url 'delete-plant' plant_slug=plant.slug %}" class='btn btn-delete'>Delete</a>
                     </div>
                 </div>
 

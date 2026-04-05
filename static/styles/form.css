@@ -252,6 +252,7 @@ div#id_action input[type="radio"]:checked + label {
     cursor: default;
 }
 
+
 @media (max-width: 600px) {
     .card {
         width: 95% !important;

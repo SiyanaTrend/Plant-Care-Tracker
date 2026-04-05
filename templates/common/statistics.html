@@ -19,7 +19,8 @@
                             <small><strong>Needs watering:</strong></small>
                             {% for plant in health.needs_attention %}
                                 <p class='warning-item'>
-                                    ⚠️ <a href="{% url 'maintenance-details' plant.pk %}">{{ plant.plant_name }}</a>
+                                    ⚠️ <a
+                                        href="{% url 'maintenance-details' plant_slug=plant.slug %}">{{ plant.plant_name }}</a>
                                 </p>
                             {% endfor %}
                         </div>
@@ -58,7 +59,20 @@
                     <p>No records found yet!</p>
                 {% endif %}
             </div>
-
+            <div class='details-box'>
+                <h4>❤️ Favourite Plants</h4>
+                {% if most_loved %}
+                    {% for plant in most_loved %}
+                        <p><strong>{{ plant.plant_name }}</strong></p>
+                    {% endfor %}
+                    <small>
+                        Saved in {{ most_loved.0.fav_count }}
+                        favourite list{{ most_loved.0.fav_count|pluralize }}
+                    </small>
+                {% else %}
+                    <p>No favourites yet!</p>
+                {% endif %}
+            </div>
             <div class='details-box'>
                 <h4>🏷️ Popular Tags</h4>
                 <ul class='tag-list'>

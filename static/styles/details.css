@@ -403,7 +403,7 @@
 
 .stats-details {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.2em;
 }
 
@@ -411,6 +411,7 @@
     background: #fdf6fb;
     padding: 1.2em;
     border-left: 5px solid var(--flower-accent);
+    border-right: 5px solid var(--flower-accent);
     border-radius: 10px;
 }
 
@@ -457,22 +458,37 @@
     font-size: 0.9rem;
 }
 
+.pro-label.favourite {
+    color: var(--dark-green);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.pro-label.favourite:hover {
+    background-color: var(--dark-purple);
+    color: white;
+}
+
 @media (max-width: 768px) {
     .profile-layout {
         flex-direction: column !important;
         align-items: center;
     }
+
     .profile-left {
         width: 100% !important;
         margin-bottom: 20px;
     }
+
     .profile-right {
         width: 100% !important;
         text-align: center;
     }
+
     .care-info-grid {
         grid-template-columns: 1fr !important;
     }
+
     .details-actions-wrapper {
         flex-direction: column;
         gap: 10px;

@@ -30,8 +30,8 @@
                         {% endif %}
 
                         <div class='details-actions-wrapper'>
-                            <a href="{% url 'maintenance-details' plant.pk %}" class='btn btn-maintenance'>Care</a>
-                            <a href="{% url 'plant-details' plant.pk %}" class='btn btn-details'>Details</a>
+                            <a href="{% url 'maintenance-details' plant.slug %}" class='btn btn-maintenance'>Care</a>
+                            <a href="{% url 'plant-details' plant.slug %}" class='btn btn-details'>Details</a>
                         </div>
                     </div>
                 {% endfor %}
