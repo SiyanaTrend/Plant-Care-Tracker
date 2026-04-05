@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card'>
+            <h5>You have been successfully logged out!</h5>
+            <p style='margin: 15px;'>See you soon, Gardener!</p>
+            <a href="{% url 'login' %}" style='margin-top: 30px;'>Login Again</a>
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+    </div>
+{% endblock %}

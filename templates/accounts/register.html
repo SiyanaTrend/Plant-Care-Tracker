@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Register Page{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card'>
+            <h4>Join our Garden Community</h4>
+            <form method='post' enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type='submit' class="btn">Register</button>
+            </form>
+            <p style='margin-top: 15px;'>Already have an account? <a href="{% url 'login' %}">Login here!</a></p>
+        </div>
+    </div>
+{% endblock %}
