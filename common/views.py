@@ -24,6 +24,16 @@ def statistics_view(request):
             actions=Count('maintenance_records')
         ).filter(actions=max_actions)
 
+    max_favs = all_plants.annotate(
+        fav_count=Count('favourite_by')
+    ).aggregate(Max('fav_count'))['fav_count__max']
+
+    most_loved = []
+    if max_favs and max_favs > 0:
+        most_loved = all_plants.annotate(
+            fav_count=Count('favourite_by')
+        ).filter(fav_count=max_favs)
+
     top_tags = Tag.objects.annotate(
         count=Count('plants')
     ).filter(count__gt=0).order_by('-count')[:3]
@@ -33,6 +43,7 @@ def statistics_view(request):
         'total_records': total_records,
         'top_tags': top_tags,
         'star_plants': star_plants,
+        'most_loved': most_loved,
         'max_actions': max_actions,
         'all_plants': all_plants,
     }
