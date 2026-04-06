@@ -88,6 +88,10 @@ form textarea::placeholder {
     padding: 0.5em;
 }
 
+form ul li {
+    text-align: left;
+}
+
 .errorlist {
     font-size: 0.8em;
     color: var(--error-text);
@@ -280,6 +284,7 @@ input[type="file"]::file-selector-button {
         margin: 10px auto;
         padding: 15px !important;
     }
+
     input, textarea, select {
         font-size: 16px !important;
     }

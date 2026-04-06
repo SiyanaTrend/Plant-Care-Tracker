@@ -65,10 +65,6 @@
                     {% for plant in most_loved %}
                         <p><strong>{{ plant.plant_name }}</strong></p>
                     {% endfor %}
-                    <small>
-                        Saved in {{ most_loved.0.fav_count }}
-                        favourite list{{ most_loved.0.fav_count|pluralize }}
-                    </small>
                 {% else %}
                     <p>No favourites yet!</p>
                 {% endif %}

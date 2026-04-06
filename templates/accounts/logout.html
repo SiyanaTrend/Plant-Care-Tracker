@@ -7,8 +7,10 @@
         <div class='card'>
             <h5>You have been successfully logged out!</h5>
             <p style='margin: 15px;'>See you soon, Gardener!</p>
-            <a href="{% url 'login' %}" style='margin-top: 30px;'>Login Again</a>
-            <a href="{% url 'home' %}">Home</a>
+            <div class='details-actions-wrapper'>
+                <a href="{% url 'login' %}" class='btn btn-secondary'>Login Again</a>
+                <a href="{% url 'home' %}" class='btn btn-secondary'>Home</a>
+            </div>
         </div>
     </div>
 {% endblock %}
