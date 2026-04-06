@@ -17,8 +17,11 @@ def create_groups(apps, schema_editor):
     ]
 
     for perm_code in gardener_perms:
-        perm = Permission.objects.get(codename=perm_code)
-        gardeners_group.permissions.add(perm)
+        try:
+            perm = Permission.objects.get(codename=perm_code)
+            gardeners_group.permissions.add(perm)
+        except Permission.DoesNotExist:
+            continue
 
     moderators_group, _ = Group.objects.get_or_create(name='Moderators')
 
@@ -30,8 +33,11 @@ def create_groups(apps, schema_editor):
     ]
 
     for perm_code in mod_perms:
-        perm = Permission.objects.get(codename=perm_code)
-        moderators_group.permissions.add(perm)
+        try:
+            perm = Permission.objects.get(codename=perm_code)
+            moderators_group.permissions.add(perm)
+        except Permission.DoesNotExist:
+            continue
 
 
 class Migration(migrations.Migration):
