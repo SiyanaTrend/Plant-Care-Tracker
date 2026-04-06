@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from plants.views import PlantListCreateAPIView, PlantDetailAPIView
 from maintenance.views import MaintenanceListCreateAPIView, MaintenanceDetailAPIView
-from django.views.defaults import server_error, permission_denied, page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),

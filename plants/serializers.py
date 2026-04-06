@@ -3,7 +3,7 @@ from .models import Plant, Tag
 
 
 class PlantSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+    user = serializers.ReadOnlyField(source='user.email')
     tags = serializers.SlugRelatedField(
         many=True,
         slug_field='tag_name',
