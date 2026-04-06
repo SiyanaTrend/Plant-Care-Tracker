@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.validators import MinLengthValidator
 from django.db import models
 from cloudinary.models import CloudinaryField
+
+from common.validators import FileSizeValidator
 from gardeners.validators import LettersDigitsOnlyValidator, FirstAndLastNameValidator
 
 
@@ -53,6 +55,7 @@ class Gardener(models.Model):
         'image',
         null=True,
         blank=True,
+        validators=[FileSizeValidator(5)],
     )
     is_pro = models.BooleanField(
         default=False,

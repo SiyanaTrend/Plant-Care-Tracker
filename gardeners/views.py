@@ -10,6 +10,9 @@ class GardenerDetailsView(LoginRequiredMixin, SingleProfileMixin, DetailView):
     model = Gardener
     template_name = 'gardeners/gardener-details.html'
 
+    def get_queryset(self):
+        return Gardener.objects.filter(user=self.request.user)
+
 
 class GardenerEditView(LoginRequiredMixin, SingleProfileMixin, UpdateView):
     model = Gardener
@@ -17,8 +20,14 @@ class GardenerEditView(LoginRequiredMixin, SingleProfileMixin, UpdateView):
     template_name = 'gardeners/edit-gardener.html'
     success_url = reverse_lazy('gardener-details')
 
+    def get_queryset(self):
+        return Gardener.objects.filter(user=self.request.user)
+
 
 class GardenerDeleteView(LoginRequiredMixin, SingleProfileMixin, DeleteView):
     model = Gardener
     template_name = 'gardeners/delete-gardener.html'
     success_url = reverse_lazy('home')
+
+    def get_queryset(self):
+        return Gardener.objects.filter(user=self.request.user)
