@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from plants.views import PlantListCreateAPIView, PlantDetailAPIView
+from maintenance.views import MaintenanceListCreateAPIView, MaintenanceDetailAPIView
+from django.views.defaults import server_error, permission_denied, page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +27,9 @@ urlpatterns = [
     path('profile/', include('gardeners.urls')),
     path('plants/', include('plants.urls')),
     path('maintenance/', include('maintenance.urls')),
-    path('notifications/', include('notifications.urls'))
+    path('notifications/', include('notifications.urls')),
+    path('api/plants/', PlantListCreateAPIView.as_view(), name='api-plant-list'),
+    path('api/plants/<slug:slug>/', PlantDetailAPIView.as_view(), name='api-plant-detail'),
+    path('api/maintenance/', MaintenanceListCreateAPIView.as_view(), name='api-maintenance-list'),
+    path('api/maintenance/<int:pk>/', MaintenanceDetailAPIView.as_view(), name='api-maintenance-detail'),
 ]

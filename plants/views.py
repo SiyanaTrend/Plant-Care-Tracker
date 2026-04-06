@@ -1,3 +1,5 @@
+from rest_framework import generics, permissions, filters
+from plants.serializers import PlantSerializer
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View
@@ -29,6 +31,7 @@ class PlantFavouriteView(LoginRequiredMixin, View):
 
         return redirect('plant-details', plant_slug=plant.slug)
 
+
 class PlantsListView(LoginRequiredMixin, ListView):
     model = Plant
     template_name = 'plants/catalogue.html'
@@ -54,12 +57,18 @@ class PlantDetailsView(LoginRequiredMixin, DetailView):
     template_name = 'plants/plant-details.html'
     slug_url_kwarg = 'plant_slug'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
 
 class PlantEditView(LoginRequiredMixin, UpdateView):
     model = Plant
     form_class = PlantEditForm
     template_name = 'plants/edit-plant.html'
     slug_url_kwarg = 'plant_slug'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
     def get_success_url(self):
         return reverse('plant-details', kwargs={'plant_slug': self.object.slug})
@@ -72,7 +81,37 @@ class PlantDeleteView(LoginRequiredMixin, DeleteView):
     slug_url_kwarg = 'plant_slug'
     success_url = reverse_lazy('catalogue')
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['instance'] = self.object
         return kwargs
+
+
+class PlantListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = PlantSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    search_fields = ['plant_name', 'species', 'city']
+    ordering_fields = ['id', 'plant_name', 'created_at']
+    ordering = ['-id']
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Plant.objects.filter(user=user).select_related('user').prefetch_related('tags')
+        return Plant.objects.none()
+
+
+class PlantDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PlantSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Plant.objects.filter(user=user).select_related('user').prefetch_related('tags')
+        return Plant.objects.none()

@@ -16,7 +16,7 @@ def create_initial_tags(apps, schema_editor):
         exists = tag_model.objects.filter(tag_name__iexact=name).exists()
 
         if not exists:
-            tag_model.objects.create(tag_name=name, is_approved=True)
+            tag_model.objects.create(tag_name=name)
 
 
 def remove_initial_tags(apps, schema_editor):
