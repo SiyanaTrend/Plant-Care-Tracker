@@ -4,6 +4,8 @@ from django.core.validators import MinLengthValidator, MinValueValidator, MaxVal
 from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
+
+from common.validators import FileSizeValidator
 from plants.validators import PlantNameValidator
 
 
@@ -58,6 +60,7 @@ class Plant(models.Model):
         'image',
         null=True,
         blank=True,
+        validators=[FileSizeValidator(5)],
     )
     city = models.CharField(
         max_length=50,
@@ -122,6 +125,10 @@ class Plant(models.Model):
         if not self.slug:
             self.slug = f"{slugify(self.plant_name)}-{random.randint(1, 1000)}"
         super().save(*args, **kwargs)
+
+    def get_last_date_for_action(self, action_type):
+        record = self.maintenance_records.filter(action=action_type).order_by('-date').first()
+        return record.date if record else None
 
     def __str__(self):
         return f'{self.plant_name} - {self.city} ({self.address})'

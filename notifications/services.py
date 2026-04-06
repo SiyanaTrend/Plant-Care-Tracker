@@ -28,5 +28,4 @@ def update_notifications(user):
                         user=user,
                         plant=plant,
                         action_type=action,
-                        is_read=False,
                     )

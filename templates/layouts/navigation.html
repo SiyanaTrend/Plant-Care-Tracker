@@ -19,9 +19,10 @@
                     <li><a href="{% url 'statistics' %}">Statistics</a></li>
                     <li>
                         <a href="{% url 'notifications-list' %}">
-                            Alerts
                             {% if unread_count > 0 %}
-                                <span class="notification-badge">{{ unread_count }}</span>
+                                <span class="notification-badge">🔔Alerts {{ unread_count }}</span>
+                            {% else %}
+                                Alerts
                             {% endif %}
                         </a>
                     </li>

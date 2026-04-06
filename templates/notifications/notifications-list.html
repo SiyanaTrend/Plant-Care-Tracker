@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='card'>
+            <div class='profile-right'>
+                <h4>🔔 Maintenance Alerts</h4>
+                <div class='maintenance-list'>
+                    {% for note in notifications %}
+                        <div class='maintenance-details'>
+                            <div class='info-details'>
+                                <p>Your <strong>{{ note.plant.plant_name }}</strong> needs
+                                    <strong>{{ note.action_type }}</strong>!</p>
+                                <small>
+                                    Last <strong>{{ note.action_type|lower }}</strong>:
+                                    {% if note.last_action_date %}
+                                        {{ note.last_action_date|date:'d M Y' }}
+                                    {% else %}
+                                        No record found
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <div class='delete-actions vertical-buttons'>
+                                <a href="{% url 'maintenance-details' plant_slug=note.plant.slug %}"
+                                   class='btn btn-secondary'>Add Care</a>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p style='margin-top: 20px;'>No new alerts. Your garden is thriving! ✨</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

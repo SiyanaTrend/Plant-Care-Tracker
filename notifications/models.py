@@ -22,15 +22,16 @@ class Notification(models.Model):
         choices=ActionPlantChoices.choices,
     )
 
-    is_read = models.BooleanField(
-        default=False,
-    )
     created_at = models.DateTimeField(
         auto_now_add=True,
     )
 
     class Meta:
         ordering = ['-created_at']
+
+    @property
+    def last_action_date(self):
+        return self.plant.get_last_date_for_action(self.action_type)
 
     def __str__(self):
         return f'{self.action_type} alert for {self.plant.plant_name}'
