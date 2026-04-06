@@ -185,3 +185,4 @@ cython_debug/
 # Static files and Media
 staticfiles/
 media/
+temp_test_media/
