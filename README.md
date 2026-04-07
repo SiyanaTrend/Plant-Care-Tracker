@@ -23,7 +23,7 @@ monitoring system.
 ### Key Features
 
 * **Role-Based Access Control (RBAC):** Custom User model with two automated groups: **Gardeners** (Owners) and **Moderators**.
-* **Asynchronous Task Processing:** Uses `asyncio` for background operations (e.g., clearing notifications after care
+* **Asynchronous Task Processing:** Uses `asyncio` for background operations (e.g., clearing notifications alerts after adding care
   tasks) without blocking the main request-response cycle.
 * **RESTful API:** Full API integration for plants and maintenance records with specialized serializers and object-level
   permissions.
@@ -40,7 +40,7 @@ The application is built using a modular architecture with six distinct Django a
 * **`accounts`**: Custom User model and authentication logic.
 * **`gardeners`**: Profile management and gardener-specific data.
 * **`plants`**: Core plant management and tagging system.
-* **`maintenance`**: Detailed care logs (Watering, Fertilizing, Pruning).
+* **`maintenance`**: Detailed care logs (Watering, Fertilizing, Pruning, Repotting).
 * **`notifications`**: System alerts and automated reminders.
 * **`common`**: Landing pages, global statistics, and error handling.
 
@@ -55,7 +55,7 @@ The application is built using a modular architecture with six distinct Django a
 * **Mixins:** Used to streamline logic and enforce consistency across multiple views.
 * **Async Tasks**: The project uses `asyncio` for background processing. Check server logs during plant care updates to
   see async tasks executing seamlessly.
-* **API Endpoints**: Accessible via `/api/plants/`. Implements `IsAuthenticated` and ownership-based `ReadOnly`
+* **API Endpoints**: Accessible via `/api/plants/`, `api/plants/<slug:slug>/`, `api/maintenance/` and `api/maintenance/<int:pk>/`. Implements `IsAuthenticated` and ownership-based `ReadOnly`
   permissions.
 * **Email Configuration**: Uses console.EmailBackend. Emails are displayed in the terminal.
 * **Deployment**: Fully configured for **Azure App Service** with Gunicorn and WhiteNoise.
@@ -131,10 +131,9 @@ The application is built using a modular architecture with six distinct Django a
 
 ## Data Management & Migrations
 
-* **Initial Tags**: The project includes a **Data Migration** that automatically prepopulates the database with
-  essential tags (e.g., Indoor, Outdoor, Low Light) upon the first migration.
-* The project includes a data migration that automatically creates 'Gardeners' and 'Moderators' groups with
-  pre-defined permissions upon migration.
+* **Initial Tags**: The project includes a **Data Migrations** that automatically prepopulates the database with
+  essential tags (e.g., Indoor, Outdoor, Low Light) and creates 'Gardeners' and 'Moderators' groups with
+  pre-defined permissions upon migration upon the first migration.
 * **Tag Moderation System**: To ensure data quality, users can suggest new tags, but these remain "pending" (hidden) by
   default.
 * **Approval Workflow**: Tags feature an `is_approved` field. Only users with **Moderator** or **Superuser** status can
