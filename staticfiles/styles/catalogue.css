@@ -1,0 +1,72 @@
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.9em;
+    padding: 1em;
+}
+
+.plant-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--form-background);
+    padding: 0.9em;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px var(--flower-accent);
+    transition: transform 0.2s;
+}
+
+.plant-card p {
+    margin-top: 0.3em;
+}
+
+.plant-card:hover {
+    transform: translateY(-20px);
+}
+
+.plant-card img {
+    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 0.5em;
+}
+
+.plant-card .details-actions-wrapper {
+    gap: 0.9em !important;
+}
+
+.plant-card .details-actions-wrapper .btn {
+    flex: 1;
+    padding: 0.8em 0.3em !important;
+    height: 3em !important;
+    font-size: 0.8em !important;
+    border-radius: 10px !important;
+}
+
+.plant-card .details-actions-wrapper .btn.btn-details,
+.plant-card .details-actions-wrapper .btn.btn-maintenance {
+    background: var(--flower-accent) !important;
+    color: var(--dark-green) !important;
+}
+
+.plant-card .details-actions-wrapper .btn.btn-details:hover,
+.plant-card .details-actions-wrapper .btn.btn-maintenance:hover {
+    background: var(--dark-purple) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgb(213, 160, 213) !important;
+}
+
+.catalog-no-plants {
+    margin-top: 7em;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 480px) {
+    .plant-grid {
+        grid-template-columns: 1fr !important;
+        padding: 10px;
+    }
+
+    .plant-card img {
+        height: auto;
+    }
+}

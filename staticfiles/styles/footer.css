@@ -1,0 +1,17 @@
+footer {
+    margin-top: auto;
+    background-color: var(--footer-background);
+    text-align: center;
+    width: 100%;
+    padding: 0.2em 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    z-index: 10;
+}
+
+footer p {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--dark-green);
+}

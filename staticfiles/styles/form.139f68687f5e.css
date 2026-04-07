@@ -1,0 +1,291 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+}
+
+.card {
+    max-width: 500px;
+    margin: 1em 0 3em 0;
+    padding: 1.8em;
+    background: var(--form-background);
+    text-align: center;
+    border-radius: 20px;
+    border-top: 5px solid var(--dark-purple);
+    box-shadow: 0 4px 24px var(--flower-accent);
+}
+
+form h4 {
+    margin-bottom: 2em;
+    color: var(--green);
+}
+
+label {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+    display: block;
+    color: var(--green);
+    font-weight: bold;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 2px solid var(--flower-accent);
+    padding: 0.5em;
+    font-size: 0.9em;
+    color: var(--text-input);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-bottom: 2px solid var(--dark-purple) !important;
+    box-shadow: 0 2px 5px rgba(230, 207, 226, 0.5);
+}
+
+form button {
+    text-transform: uppercase;
+    background: var(--flower-accent);
+    width: 100%;
+    border: 0;
+    padding: 0.4em;
+    margin-top: 1.3em;
+    color: var(--green);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    display: block;
+    width: 100%;
+    text-align: center;
+    transform: scale(1.05) translateY(-2px);
+    font-weight: bold;
+    background: var(--dark-purple);
+    color: white;
+    box-shadow: 0 5px 15px rgb(213, 160, 213);
+}
+
+.helptext {
+    color: var(--text-muted);
+    font-size: 0.8em;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--placeholder-text-color);
+    opacity: 0.5;
+    font-weight: normal;
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+
+form ul li {
+    text-align: left;
+}
+
+.errorlist {
+    font-size: 0.8em;
+    color: var(--error-text);
+    list-style: none;
+}
+
+.card.delete-card {
+    max-width: 550px;
+    border-top: 5px solid var(--delete-btn);
+}
+
+.warning-icon .icon {
+    display: inline-block;
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    filter: drop-shadow(0 0 5px var(--flower-accent));
+    animation: shake 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+.delete-card h3 {
+    color: var(--dark-green);
+    margin-bottom: 0.7em;
+}
+
+.card.delete-card p {
+    color: var(--dark-green);
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+}
+
+.delete-actions {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-card .delete-actions .btn {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8em 1em;
+    height: 3.5em;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    line-height: normal;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.delete-card .delete-actions .btn:hover {
+    width: auto;
+    transform: scale(1.05) translateY(-2px);
+}
+
+.delete-card .delete-actions .btn-secondary {
+    background: var(--flower-accent) !important;
+    color: var(--dark-green) !important;
+}
+
+.delete-card .delete-actions .btn-secondary:hover {
+    background: var(--dark-purple) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgb(213, 160, 213) !important;
+}
+
+.delete-card .delete-actions .btn-delete {
+    background: var(--delete-btn) !important;
+    color: white !important;
+}
+
+.delete-card .delete-actions .btn-delete:hover {
+    background: var(--delete-btn-hover) !important;
+    box-shadow: 0 5px 15px rgba(230, 141, 163, 0.4) !important;
+}
+
+.card fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card legend {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+div#id_action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+div#id_action div {
+    display: inline-block;
+}
+
+div#id_action input[type="radio"] {
+    display: none;
+}
+
+div#id_action label {
+    display: inline-block;
+    padding: 3px 15px;
+    background: white;
+    border: 2px solid var(--flower-accent);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: normal;
+    color: var(--green);
+    margin: 0;
+}
+
+div#id_action label:hover {
+    background: var(--flower-accent);
+}
+
+div#id_action label:has(input[type="radio"]:checked) {
+    background: var(--flower-accent) !important;
+    color: white !important;
+    border-color: var(--flower-accent) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* backup for older browsers */
+div#id_action input[type="radio"]:checked + label {
+    background: var(--flower-accent) !important;
+    color: white !important;
+    border-color: var(--flower-accent) !important;
+}
+
+.delete-card div#id_action div:has(input[type="radio"]:not(:checked)) {
+    display: none;
+}
+
+.delete-card div#id_action input[type="radio"]:disabled + label {
+    opacity: 1;
+    cursor: default;
+}
+
+/* CloudinaryField */
+input[type="file"] {
+    display: block;
+    width: 100%;
+    color: var(--dark-green);
+    background-color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background 0.3s;
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 95% !important;
+        margin: 10px auto;
+        padding: 15px !important;
+    }
+
+    input, textarea, select {
+        font-size: 16px !important;
+    }
+}

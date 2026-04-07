@@ -1,0 +1,9 @@
+.home {
+    text-align: center;
+    margin-top: 7em;
+    color: var(--green);
+}
+
+.home h2 {
+    color: var(--green);
+}
