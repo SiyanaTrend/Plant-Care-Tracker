@@ -155,3 +155,4 @@ The application is built using a modular architecture with six distinct Django a
 ## Credentials for Testing
 * **Superuser**: To manage the project, create a local superuser using `python manage.py createsuperuser`.
 * **Moderator Access**: Assign a user to the **Moderators** group and set `is_staff=True` in the Admin panel to test the tag approval workflow.
+
