@@ -32,6 +32,11 @@ ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS').split(',') if host]
 
 CSRF_TRUSTED_ORIGINS = [host for host in config('CSRF_TRUSTED_ORIGINS').split(',') if host]
 
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 # Application definition
 
 INSTALLED_APPS = [
