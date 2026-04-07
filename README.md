@@ -22,8 +22,10 @@ monitoring system.
 
 ### Key Features
 
-* **Role-Based Access Control (RBAC):** Custom User model with two automated groups: **Gardeners** (Owners) and **Moderators**.
-* **Asynchronous Task Processing:** Uses `asyncio` for background operations (e.g., clearing notifications alerts after adding care
+* **Role-Based Access Control (RBAC):** Custom User model with two automated groups: **Gardeners** (Owners) and *
+  *Moderators**.
+* **Asynchronous Task Processing:** Uses `asyncio` for background operations (e.g., clearing notifications alerts after
+  adding care
   tasks) without blocking the main request-response cycle.
 * **RESTful API:** Full API integration for plants and maintenance records with specialized serializers and object-level
   permissions.
@@ -55,10 +57,13 @@ The application is built using a modular architecture with six distinct Django a
 * **Mixins:** Used to streamline logic and enforce consistency across multiple views.
 * **Async Tasks**: The project uses `asyncio` for background processing. Check server logs during plant care updates to
   see async tasks executing seamlessly.
-* **API Endpoints**: Accessible via `/api/plants/`, `api/plants/<slug:slug>/`, `api/maintenance/` and `api/maintenance/<int:pk>/`. Implements `IsAuthenticated` and ownership-based `ReadOnly`
+* **API Endpoints**: Accessible via `/api/plants/`, `api/plants/<slug:slug>/`, `api/maintenance/`
+  and `api/maintenance/<int:pk>/`. Implements `IsAuthenticated` and ownership-based `ReadOnly`
   permissions.
 * **Email Configuration**: Uses console.EmailBackend. Emails are displayed in the terminal.
 * **Deployment**: Fully configured for **Azure App Service** with Gunicorn and WhiteNoise.
+* **Custom Error Handling**: Personalized templates for 404 (Not Found), 403 (Permission Denied), and 500 (Server Error)
+  to ensure a consistent user experience even when issues occur.
 
 ---
 
@@ -94,19 +99,26 @@ The application is built using a modular architecture with six distinct Django a
     ```bash
     python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
     ```
-    * **Set up your local PostgreSQL database and Email Configuration** and enter the credentials in the `.env` file.
+    * **Enter the following credentials in the `.env` file:**
     ```env
     SECRET_KEY=your_secret_key_here
     DEBUG=True    
     ALLOWED_HOSTS=localhost,127.0.0.1
     CSRF_TRUSTED_ORIGINS=http://localhost,http://127.0.0.1
-
+    
+    # Database Settings
     DB_NAME=your_database_name
     DB_USER=your_postgres_user
     DB_PASSWORD=your_postgres_password
     DB_HOST=127.0.0.1
     DB_PORT=5432
-
+    
+    # Cloudinary Settings (Media)
+    CLOUDINARY_CLOUD_NAME=your_cloud_name
+    CLOUDINARY_API_KEY=your_api_key
+    CLOUDINARY_API_SECRET=your_api_secret
+   
+    # Email Settings
     EMAIL_HOST_USER=your_email_host_user_here
     EMAIL_HOST_PASS=your_email_host_password_here
     COMPANY_EMAIL=your_verified_email@example.com
@@ -122,7 +134,7 @@ The application is built using a modular architecture with six distinct Django a
 7. **Open in browser**
    ```
    http://127.0.0.1:8000/
-   
+
 8. **Testing**
     ```bash
     python manage.py test
@@ -152,6 +164,8 @@ The application is built using a modular architecture with six distinct Django a
 ---
 
 ## Credentials for Testing
+
 * **Superuser**: To manage the project, create a local superuser using `python manage.py createsuperuser`.
-* **Moderator Access**: Assign a user to the **Moderators** group and set `is_staff=True` in the Admin panel to test the tag approval workflow.
+* **Moderator Access**: Assign a user to the **Moderators** group and set `is_staff=True` in the Admin panel to test the
+  tag approval workflow.
 
